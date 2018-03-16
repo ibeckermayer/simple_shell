@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 {
 	unsigned long long int pid_max = 0;
 	int i = 0;
-	
+
 	size_t buffsize = 32;
 	size_t chars;
 	char *buffer = NULL;

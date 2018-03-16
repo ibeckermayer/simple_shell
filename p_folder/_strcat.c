@@ -24,7 +24,7 @@ char *_strcat(char *dest, char *src)
 		final[j] = dest[j];
 		j++;
 	}
-	final[j] = '/';
+	final[j++] = '/';
 
 	for (k = 0; j < total; j++, k++)
 		final[j] = src[k];
