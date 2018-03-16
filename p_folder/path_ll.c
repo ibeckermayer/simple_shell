@@ -9,6 +9,7 @@ void print_pll(pll *head)
 	}
 }
 
+/* check for if PATH is unset */
 pll *path_ll()
 {
 	extern char **environ;
