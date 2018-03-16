@@ -1,8 +1,4 @@
-#include <stdio.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdlib.h>
+#include "ss_head.h"
 
 char *find_path(char **environ)
 {
@@ -33,7 +29,7 @@ int main(int argc, char **argv, char **environ)
 {
 	char *_path = find_path(environ), *_paths = NULL, *full_path;
 	int i = 1;
-	int fp_len;
+	/* int fp_len; */
 	int found = 0;
 	struct stat st;
 
@@ -43,9 +39,9 @@ int main(int argc, char **argv, char **environ)
 		found = 0;
 		while (_paths != NULL)
 		{
-			fp_len = _strlen(_paths) + strlen(argv[i]);
-			full_path = malloc(fp_len);
-			full_path = _strcat(full_path, argv[i]);
+			/* fp_len = _strlen(_paths) + strlen(argv[i]); */
+			/* full_path = malloc(fp_len); */
+			full_path = _strcat(_paths, argv[i]);
 			if (stat(full_path, &st) == 0)
 			{
 				printf("%s FOUND\n", argv[i]);
