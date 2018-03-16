@@ -9,7 +9,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-int _strlen(char *s);
+int _strlen(const char *s);
 char *_strcat(char *dest, char *src);
+char *_getenv(const char *name);
 
 #endif
