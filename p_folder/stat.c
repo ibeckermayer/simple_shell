@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 char *find_path(char **environ)
 {
@@ -25,6 +26,7 @@ char *find_path(char **environ)
 		}
 		i++;
 	}
+	return NULL;
 }
 
 int main(int argc, char **argv, char **environ)
