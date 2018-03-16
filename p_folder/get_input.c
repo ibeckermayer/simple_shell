@@ -17,10 +17,3 @@ char *getinput(void)
 
 	return (input_buffer);
 }
-
-int main(void)
-{
-	char *to_print = getinput();
-	write(1, to_print, _strlen(to_print));
-	return (0);
-}
