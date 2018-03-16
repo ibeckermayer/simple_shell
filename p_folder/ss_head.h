@@ -20,5 +20,9 @@ char *_strcat(char *dest, char *src);
 char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
+char *get_input(void);
+int _getppid(void);
+char *show_prompt(char *buffer);
+char *f_cmd(char *command, char *path);
 
 #endif

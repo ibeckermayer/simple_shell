@@ -1,5 +1,11 @@
 #include "ss_head.h"
 
+/**
+* _getenv - get environment varaible
+* @name: name of variable
+* Return: environment location
+*/
+
 char *_getenv(const char *name)
 {
 	extern char **environ;
@@ -22,10 +28,4 @@ char *_getenv(const char *name)
 		i++;
 	}
 	return NULL;
-}
-
-int main(void)
-{
-	printf("%s\n", _getenv("SHELL"));
-	return (0);
 }
