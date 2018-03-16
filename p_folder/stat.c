@@ -31,6 +31,8 @@ int main(int argc, char **argv, char **environ)
 {
 	char *_path = find_path(environ), *_paths = NULL;
 
+	printf("Full PATH is: %s\n", _path);
+
 	_paths = strtok(_path, ":");
 
 	while (_paths != NULL)
@@ -38,5 +40,7 @@ int main(int argc, char **argv, char **environ)
 		printf("%s\n", _paths);
 		_paths = strtok(NULL, ":");
 	}
+
+
 
 }
