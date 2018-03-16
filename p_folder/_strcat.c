@@ -1,21 +1,32 @@
+#include "ss_head.h"
+
 /**
 * _strcat - concatinates two strings
-* @dest: string to be appended
+* @dest: string to be appende
 * @src: source string to append to
 * Return: th dest
 */
 char *_strcat(char *dest, char *src)
 {
-	int size = 0, size2 = 0, j, k;
+	int size = 0, size2 = 0, j, k, total = 0;
+	char *final;
 
-	while (dest[size] != '\0')
+	while (dest[size])
 		size++;
 
-	while (src[size2] != '\0')
+	while (src[size2])
 		size2++;
 
-	for (j = size, k = 0; j < size + size2; j++, k++)
-		dest[j] = src[k];
+	final = malloc(total = size + size2 + 1);
 
-	return (dest);
+	while (dest[j])
+	{
+		final[j] = dest[j];
+		j++;
+	}
+
+	for (k = 0; j < total; j++, k++)
+		final[j] = src[k];
+
+	return (final);
 }
