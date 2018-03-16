@@ -1,18 +1,9 @@
 #include "ss_head.h"
 
-char *show_prompt(char *buffer)
-{
-	int i = 0;
-	buffer = getinput();
-
-	while (buffer[i] != '\n')
-		i++;
-
-	buffer[i] = 0;
-
-	return (buffer);
-
-}
+/**
+* main - medium version of shell w/continue prompt
+* Return: 0
+*/
 
 int main(int argc, char **argv)
 {
@@ -24,7 +15,7 @@ int main(int argc, char **argv)
 	const char delim[2] = " ";
 	int i = 0, status;
 
-	buffer = show_prompt(buffer);
+	buffer = show_prompt(find_command(buffer));
 
 	execve_seed[0] = to_run = token = strtok(buffer, delim);
 
@@ -32,13 +23,11 @@ int main(int argc, char **argv)
 	while (1)
 	{
 		if (fork() == 0)
-		{
 			execve(execve_seed[0], execve_seed, NULL);
-		}
 		else
 		{
 			wait(&status);
-			execve_seed[0] = to_run = token = strtok(show_prompt(buffer), delim);
+			execve_seed[0] = to_run = token = strtok(show_prompt(find_command(buffer)), delim);
 		}
 	} 
 }

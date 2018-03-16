@@ -1,6 +1,11 @@
 #include "ss_head.h"
 
-char *getinput(void)
+/**
+* get_input - gets user input
+* Return: input buffer
+*/
+
+char *get_input(void)
 {
 	char *input_buffer;
 	int size_of_input = 0, buffer_size = 10, i = 0;

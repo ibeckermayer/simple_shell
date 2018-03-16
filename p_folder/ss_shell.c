@@ -1,5 +1,10 @@
 #include "ss_head.h"
 
+/**
+* main - simple version of shell
+* Return: 0
+*/
+
 int main(int argc, char **argv)
 {
 	size_t buffsize = 32;
