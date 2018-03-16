@@ -21,5 +21,6 @@ char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
 char *getinput(void);
+int _getppid(void);
 
 #endif
