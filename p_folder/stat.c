@@ -2,6 +2,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <string.h>
+#include <stdlib.h>
 
 char *find_path(char **environ)
 {
@@ -25,22 +26,39 @@ char *find_path(char **environ)
 		}
 		i++;
 	}
+	return NULL;
 }
 
 int main(int argc, char **argv, char **environ)
 {
-	char *_path = find_path(environ), *_paths = NULL;
+	char *_path = find_path(environ), *_paths = NULL, *full_path;
+	int i = 1;
+	int fp_len;
+	int found = 0;
+	struct stat st;
 
-	printf("Full PATH is: %s\n", _path);
-
-	_paths = strtok(_path, ":");
-
-	while (_paths != NULL)
+	while (i < argc)
 	{
-		printf("%s\n", _paths);
-		_paths = strtok(NULL, ":");
+		_paths = strtok(_path, ":");
+		found = 0;
+		while (_paths != NULL)
+		{
+			fp_len = _strlen(_paths) + strlen(argv[i]);
+			full_path = malloc(fp_len);
+			full_path = _strcat(full_path, argv[i]);
+			if (stat(full_path, &st) == 0)
+			{
+				printf("%s FOUND\n", argv[i]);
+				found = 1;
+				break;
+			}
+			_paths = strtok(NULL, ":");
+		}
+		if (!found)
+			printf("%s NOT FOUND\n", argv[i]);
+		i++;
 	}
 
 
-
+	return (0);
 }
