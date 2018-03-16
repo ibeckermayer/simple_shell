@@ -17,13 +17,14 @@ char *_strcat(char *dest, char *src)
 	while (src[size2])
 		size2++;
 
-	final = malloc(total = size + size2 + 1);
+	final = malloc(total = size + size2 + 2);
 
 	while (dest[j])
 	{
 		final[j] = dest[j];
 		j++;
 	}
+	final[j] = '/';
 
 	for (k = 0; j < total; j++, k++)
 		final[j] = src[k];
