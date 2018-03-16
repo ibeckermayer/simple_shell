@@ -35,8 +35,6 @@ int main(int argc, char **argv, char **environ)
 	int found = 0;
 	struct stat st;
 
-
-
 	while (i < argc)
 	{
 		_paths = strtok(_path, ":");
@@ -58,6 +56,7 @@ int main(int argc, char **argv, char **environ)
 			printf("%s NOT FOUND\n", argv[i]);
 		i++;
 	}
+
 
 	return (0);
 }
