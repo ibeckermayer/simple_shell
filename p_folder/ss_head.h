@@ -20,5 +20,6 @@ char *_strcat(char *dest, char *src);
 char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
+char *getinput(void);
 
 #endif
