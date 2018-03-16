@@ -1,7 +1,7 @@
 #include "ss_head.h"
 #include "f_cmd.c"
 /**
-* main - medium version of shell w/continue prompt
+* main - medium version of shell w/continue prompt & added command functionality
 * Return: 0
 */
 
