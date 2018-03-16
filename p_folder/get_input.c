@@ -20,8 +20,7 @@ char *getinput(void)
 
 int main(void)
 {
-	char *to_print = getinput(), *result;
-	result = _strcat("This is a test from main: ", to_print);
-	write(1, result, _strlen(to_print) + 32);
+	char *to_print = getinput();
+	write(1, to_print, _strlen(to_print));
 	return (0);
 }
