@@ -9,7 +9,7 @@
 char *f_cmd(char *command, char *path)
 {
 	char *_path = path, *_paths = NULL, *full_path;
-	found = 0;
+	int found = 0;
 
 	_paths = strtok(_path, ":");
 

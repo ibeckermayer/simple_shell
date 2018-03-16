@@ -1,5 +1,4 @@
 #include "ss_head.h"
-#include "f_cmd.c"
 /**
 * main - medium version of shell w/continue prompt & added command functionality
 * Return: 0
@@ -8,7 +7,7 @@
 int main(int argc, char **argv)
 {
 	size_t buffsize = 32;
-	char *buffer = NULL, *token = NULL, *to_run, *tmp;
+	char *buffer = NULL, *to_run = NULL;
 	char *execve_seed[]= {to_run, NULL};
 
 
@@ -19,7 +18,7 @@ int main(int argc, char **argv)
 	printf("tmp first time is: %s\n", tmp);
 	buffer = f_cmd(tmp, _getenv("PATH"));
 	printf("command is: %s\n", buffer);
-	execve_seed[0] = to_run = token = strtok(buffer, delim);
+	execve_seed[0] = to_run = strtok(buffer, delim);
 
 	i = 0;
 	while (1)
