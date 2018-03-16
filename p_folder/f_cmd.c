@@ -8,16 +8,15 @@
 
 char *f_cmd(char *command, char *path)
 {
-	char *_path =  path, *_paths = NULL, *full_path;
+	char *_path = path, *_paths = NULL, *full_path;
 	int i = 1, found = 0;
-	struct stat st;
 
 	_paths = strtok(_path, ":");
 
 	while (_paths != NULL)
 	{
 		full_path = _strcat(_paths, command);
-		if (stat(full_path, &st) == 0)
+		if (access(full_path, F_OK) == 0)
 		{
 			found = 1;
 			break;

@@ -12,7 +12,7 @@ char *get_input(void)
 
 	input_buffer = malloc(1 << 10);
 
-	write(1, "$ ", 2);
+	write(1, ";)$ ", 4);
 
 	while (size_of_input = read(0, input_buffer, 1 << buffer_size) > 1 << buffer_size)
 	{
