@@ -3,7 +3,7 @@
 char *getinput(void)
 {
 	char *input_buffer;
-	int size_of_input = 0, buffer_size = 10, i = 0, dw = 0;
+	int size_of_input = 0, buffer_size = 10, i = 0;
 
 	input_buffer = malloc(1 << 10);
 
