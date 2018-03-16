@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	i = 0;
 	while (1)
 	{
-		if (fork() == 0)
+		if (!(fork()))
 		{
 			execve(execve_seed[0], execve_seed, NULL);
 		}
