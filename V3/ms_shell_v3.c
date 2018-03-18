@@ -4,15 +4,16 @@
 * Return: 0
 */
 
-int main(void)
+int main(int argc, char **argv)
 {
 	char *buffer = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
 	char *full_prog_path;
-	/* const char delim[2] = " "; */
+	char *err_msg = _strcat(argv[0], ": No such file or directory\n");
+	int err_msg_len = _strlen(err_msg);
 	int status, i;
 
-
+	UNUSED(argc);
 	while (1)
 	{
 		show_prompt();
@@ -22,24 +23,24 @@ int main(void)
 		/* need to reset strtok because f_cmd calls it and is static*/
 		strtok(buffer, " ");
 
-		if (full_prog_path)
+		if (full_prog_path && _strcmp("", full_prog_path) != 0)
 		{
 			i = 0;
 			arguments[i] = full_prog_path;
 			while (arguments[i])
 				arguments[++i] = strtok(NULL, " ");
-
 			arguments[i] = NULL;
+
+			if (!(fork()))
+				execve(arguments[0], arguments, NULL);
+			else
+				wait(&status);
+		}
+		else if (full_prog_path && _strcmp("", full_prog_path) == 0)
+		{
+			write(2, err_msg, err_msg_len);
 		}
 
 
-		if (!(fork()))
-		{
-			execve(arguments[0], arguments, NULL);
-		}
-		else
-		{
-			wait(&status);
-		}
-	} 
+	}
 }

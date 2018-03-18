@@ -3,7 +3,7 @@
 /**
 * find_command - find shell commands PATH
 * @command: commands name
-* Return: PATH to command
+* Return: PATH to command, NULL if no command given, empty string ("") if command not found
 */
 
 char *f_cmd(char *command)
@@ -11,6 +11,9 @@ char *f_cmd(char *command)
 	char *_paths = NULL, *full_path;
 	int found = 0;
 	char *_path = getenv("PATH");
+
+	if (!command)
+		return (NULL);
 
 	_paths = strtok(strdup(_path), ":");
 
@@ -28,7 +31,7 @@ char *f_cmd(char *command)
 		_paths = strtok(NULL, ":");
 	}
 	if (!found)
-		return (NULL);
+		return ("");
 
 	return(full_path);
 }

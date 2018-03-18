@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #define _BUFSIZ 1024
+#define UNUSED(x) (void)(x)
 typedef struct p_ll
 {
 	char *pdir;
@@ -26,4 +27,5 @@ int _getppid(void);
 void show_prompt(void);
 char *f_cmd(char *command);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int _strcmp(const char *s1, const char *s2);
 #endif
