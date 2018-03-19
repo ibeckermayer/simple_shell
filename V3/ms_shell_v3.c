@@ -14,6 +14,10 @@ int main(int argc, char **argv)
 	sll *input_toks;
 
 	UNUSED(argc);
+
+	/* initialize history array !!! history will eventually get filled */
+	while (i < HISTORY_COUNT)
+		history[i++] = NULL;
 	while (1)
 	{
 		/* display prompt and wait for input */
@@ -21,8 +25,6 @@ int main(int argc, char **argv)
 		input = get_input();
 
 		/* Add to history */
-		while (i < HISTORY_COUNT)
-			history[i++] = NULL;
 		history[current] = _strdup(input);
 		current++;
 
@@ -51,20 +53,23 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		full_prog_path = f_cmd(input_toks->str);
-
-		/* /\* need to reset _strtok because f_cmd calls it and is static*\/ */
-		/* _strtok(input, " "); */
+		if (input_toks)
+			full_prog_path = f_cmd(input_toks->str);
+		else
+			full_prog_path = NULL;
 
 		if (full_prog_path && _strcmp("", full_prog_path) != 0)
 		{
 			i = 0;
-			arguments[i] = full_prog_path;
-			while (arguments[i])
+			arguments[i++] = full_prog_path;
+			input_toks = input_toks->next;
+			while (input_toks)
 			{
-				arguments[++i] = input_toks->str;
+				arguments[i] = input_toks->str;
 				input_toks = input_toks->next;
+				i++;
 			}
+			arguments[i] = NULL;
 
 			if (!(fork()))
 				execve(arguments[0], arguments, NULL);
@@ -77,13 +82,5 @@ int main(int argc, char **argv)
 		}
 		else
 			continue;
-
-		/* i = 0; */
-		/* printf("\n**********Perpetual History*************\n"); */
-		/* while (history[i]) */
-		/* { */
-		/* 	printf("%s\n", history[i++]); */
-		/* } */
-		/* printf("\n"); */
 	}
 }

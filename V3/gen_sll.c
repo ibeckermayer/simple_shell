@@ -15,7 +15,7 @@ sll *gen_sll(char *str, char *delim)
 	char *curr_tok;
 
 	int i, num_toks = 0;
-	sll *head = NULL, *original_head, *new_node;
+	sll *head = NULL, *original_head = NULL, *new_node;
 
 	curr_tok = _strtok(_strdup(str), delim);
 	while (curr_tok != NULL)
