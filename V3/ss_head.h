@@ -19,7 +19,6 @@
 
 char *history[HISTORY_COUNT];
 int cur_his;
-int return_line;
 typedef struct string_linked_list
 {
 	char *str;
