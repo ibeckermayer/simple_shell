@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 		input = get_input();
 
 		/* Add to history unless it is an empty string or return*/
-		if (_strcmp(input, "") != 0)
+		if (_strcmp(input, "\n") != 0)
 		{
 			history[current] = _strdup(input);
 			current++;
