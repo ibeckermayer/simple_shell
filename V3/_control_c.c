@@ -2,7 +2,7 @@
 
 void _control_c(int sig)
 {
-	/* ctrl_c = 1; */
-	/* printf("\n"); */
-	signal(sig, SIG_IGN);
+     UNUSED(sig);
+     write(1, "\n", 1);
+     show_prompt();
 }

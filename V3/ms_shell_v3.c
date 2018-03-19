@@ -15,7 +15,6 @@ int main(int argc, char **argv)
 
 	UNUSED(argc);
 
-
 	while (1)
 	{
 		/* check control-c */
