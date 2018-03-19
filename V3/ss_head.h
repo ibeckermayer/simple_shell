@@ -8,12 +8,15 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <stdlib.h>
 #define _BUFSIZ 1024
-#define HISTORY_COUNT 1 << 10
+#define HISTORY_COUNT 1024
 #define INPUT_DELIM " "
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
+
+char *history[HISTORY_COUNT];
 typedef struct string_linked_list
 {
 	char *str;
@@ -37,4 +40,6 @@ void _sexit(void);
 void _sclear(void);
 void _shistory(char **history);
 char *_strtok(char *s, char *delim);
+int check_builtins(char * input);
+char *_itoa(int val, int base);
 #endif

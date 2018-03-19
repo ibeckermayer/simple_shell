@@ -6,7 +6,7 @@
 int main(int argc, char **argv)
 {
 	char *input = NULL; /* *to_run = NULL; */
-	char *arguments[_BUFSIZ], *history[HISTORY_COUNT];
+	char *arguments[_BUFSIZ];
 	char *full_prog_path;
 	char *err_msg = _strcat(argv[0], ": No such file or directory\n");
 	int err_msg_len = _strlen(err_msg);
@@ -22,34 +22,19 @@ int main(int argc, char **argv)
 		show_prompt();
 		input = get_input();
 
-		/* Add to history */
-		history[current] = _strdup(input);
-		current++;
+		/* Add to history unless it is an empty string or return*/
+		if (_strcmp(input, "") != 0)
+		{
+			history[current] = _strdup(input);
+			current++;
+		}
 
 		/* tokenize input */
 		input_toks = gen_sll(input, INPUT_DELIM);
 
 		/* check for built-ins */
-		if (_strcmp(input, "history") == 0 || _strcmp(input, "h") == 0)
-		{
-			_shistory(history);
+		if (check_builtins(input) == 0)
 			continue;
-		}
-		else if (_strcmp(input, "clear") == 0)
-		{
-			_sclear();
-			continue;
-		}
-		else if (_strcmp(input, "exit") == 0 || _strcmp(input, "quit") == 0)
-		{
-			_sclear();
-			_sexit();
-		}
-		else if (_strcmp(input, "env") == 0)
-		{
-			print_env();
-			continue;
-		}
 
 		if (input_toks)
 			full_prog_path = f_cmd(input_toks->str);
