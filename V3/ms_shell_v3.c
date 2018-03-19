@@ -16,12 +16,12 @@ int main(int argc, char **argv)
 
 	UNUSED(argc);
 
-	/* check control-c */
-	signal(SIGINT, _control_c);
-
 	/* initialize history array !!! history will eventually get filled */
 	while (1)
 	{
+		/* check control-c */
+		signal(SIGINT, _control_c);
+		
 		/* display prompt and wait for input */
 		show_prompt();
 		input = get_input();
