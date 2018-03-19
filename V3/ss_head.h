@@ -17,12 +17,14 @@
 #define UNUSED(x) (void)(x)
 
 char *history[HISTORY_COUNT];
+int cur_his;
 typedef struct string_linked_list
 {
 	char *str;
 	struct string_linked_list *next;
 } sll;
 sll *gen_sll(char *str, char *delim);
+void add2his(char *input);
 void print_sll(sll *head);
 int _strlen(const char *s);
 char *_strcat(char *dest, char *src);

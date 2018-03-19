@@ -10,8 +10,9 @@ int main(int argc, char **argv)
 	char *full_prog_path;
 	char *err_msg = _strcat(argv[0], ": No such file or directory\n");
 	int err_msg_len = _strlen(err_msg);
-	int status, i, current = 0;
+	int status, i;
 	sll *input_toks;
+	cur_his = 0;
 
 	UNUSED(argc);
 
@@ -25,8 +26,7 @@ int main(int argc, char **argv)
 		/* Add to history unless it is an empty string or return*/
 		if (_strcmp(input, "") != 0)
 		{
-			history[current] = _strdup(input);
-			current++;
+			add2his(input);
 		}
 
 		/* tokenize input */
