@@ -11,7 +11,8 @@ void print_env(void)
 
 	while (environ[i])
 	{
-		write(1, environ[i++], _strlen(environ[i]));
+		write(1, environ[i], _strlen(environ[i]));
+		i++;
 		write(1, "\n", 1);
 	}
 }

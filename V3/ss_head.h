@@ -35,6 +35,6 @@ int _strcmp(const char *s1, const char *s2);
 void print_env(void);
 void _sexit(void);
 void _sclear(void);
-void _shistory(char **history, int current);
+void _shistory(char **history);
 char *_strtok(char *s, char *delim);
 #endif

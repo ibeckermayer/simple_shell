@@ -4,7 +4,7 @@
  * Return: void
  */
 void pr_int(int n);
-void _shistory(char **history, int current)
+void _shistory(char **history)
 {
         int i = 0;
 
@@ -12,7 +12,8 @@ void _shistory(char **history, int current)
         {
                 write(1, " ", 1);
                 write(1, "  ", 2);
-                write(1, history[i++], _strlen(history[i]));
+                write(1, history[i], _strlen(history[i]));
+		i++;
                 write(1, "\n", 1);
         }
 

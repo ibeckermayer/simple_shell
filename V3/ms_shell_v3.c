@@ -16,8 +16,6 @@ int main(int argc, char **argv)
 	UNUSED(argc);
 
 	/* initialize history array !!! history will eventually get filled */
-	while (i < HISTORY_COUNT)
-		history[i++] = NULL;
 	while (1)
 	{
 		/* display prompt and wait for input */
@@ -34,7 +32,7 @@ int main(int argc, char **argv)
 		/* check for built-ins */
 		if (_strcmp(input, "history") == 0 || _strcmp(input, "h") == 0)
 		{
-			_shistory(history, current);
+			_shistory(history);
 			continue;
 		}
 		else if (_strcmp(input, "clear") == 0)
