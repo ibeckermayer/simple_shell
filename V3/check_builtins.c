@@ -6,7 +6,6 @@
 
 int check_builtins(char *input)
 {
-
 	if (_strcmp(input, "history") == 0 || _strcmp(input, "h") == 0)
 	{
 		_shistory(history);
@@ -17,7 +16,7 @@ int check_builtins(char *input)
 		_sclear();
 		return (0);
 	}
-	else if (_strcmp(input, "exit") == 0 || _strcmp(input, "quit") == 0)
+	else if (_strcmp(input, "exit") == 0 || _strcmp(input, "quit") == 0 || _strcmp(input, "") == 0)
 	{
 		_sclear();
 		_sexit();
@@ -25,6 +24,10 @@ int check_builtins(char *input)
 	else if (_strcmp(input, "env") == 0)
 	{
 		print_env();
+		return (0);
+	}
+	else if(_strcmp(input, "\n") == 0)
+	{
 		return (0);
 	}
 	return (1);
