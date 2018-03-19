@@ -21,9 +21,6 @@ int main(int argc, char **argv)
 
 		/* Add to history */
 
-        while (i < HISTORY_COUNT)
-                history[i++] = NULL;
-
         history[current] = _strdup(buffer);
         current++;
 
@@ -73,12 +70,12 @@ int main(int argc, char **argv)
 			write(2, err_msg, err_msg_len);
 		}
 
-		i = 0;
-		printf("\n**********Perpetual History*************\n");
-		while (history[i])
-		{
-			printf("%s\n", history[i++]);
-		}
-		printf("\n");
+		// i = 0;
+		// printf("\n**********Perpetual History*************\n");
+		// while (history[i])
+		// {
+		// 	printf("%s\n", history[i++]);
+		// }
+		// printf("\n");
 	}
 }
