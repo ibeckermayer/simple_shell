@@ -9,7 +9,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #define _BUFSIZ 1024
-#define MAX_CMD_LEN  128
 #define HISTORY_COUNT 1 << 10
 #define UNUSED(x) (void)(x)
 typedef struct p_ll
