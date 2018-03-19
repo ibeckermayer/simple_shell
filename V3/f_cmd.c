@@ -15,7 +15,7 @@ char *f_cmd(char *command)
 	if (!command)
 		return (NULL);
 
-	_paths = strtok(strdup(_path), ":");
+	_paths = _strtok(strdup(_path), ":");
 
 	if (access(command, F_OK) == 0)
 		return (command);
@@ -28,7 +28,7 @@ char *f_cmd(char *command)
 			found = 1;
 			break;
 		}
-		_paths = strtok(NULL, ":");
+		_paths = _strtok(NULL, ":");
 	}
 	if (!found)
 		return ("");
