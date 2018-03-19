@@ -34,5 +34,5 @@ void print_env(void);
 void _sexit(void);
 void _sclear(void);
 void _shistory(char **history, int current);
-
+char *_strtok(char *s, char *delim);
 #endif

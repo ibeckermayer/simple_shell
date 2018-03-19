@@ -50,17 +50,17 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		full_prog_path = f_cmd(strtok(strdup(buffer), " "));
+		full_prog_path = f_cmd(_strtok(strdup(buffer), " "));
 
-		/* need to reset strtok because f_cmd calls it and is static*/
-		strtok(buffer, " ");
+		/* need to reset _strtok because f_cmd calls it and is static*/
+		_strtok(buffer, " ");
 
 		if (full_prog_path && _strcmp("", full_prog_path) != 0)
 		{
 			i = 0;
 			arguments[i] = full_prog_path;
 			while (arguments[i])
-				arguments[++i] = strtok(NULL, " ");
+				arguments[++i] = _strtok(NULL, " ");
 			arguments[i] = NULL;
 
 			if (!(fork()))

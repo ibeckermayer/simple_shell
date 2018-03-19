@@ -24,5 +24,6 @@ char *get_input(void);
 int _getppid(void);
 char *show_prompt(char *buffer);
 char *f_cmd(char *command, char *path);
-
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_strtok(char *s, char *delim);
 #endif

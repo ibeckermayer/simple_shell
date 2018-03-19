@@ -13,22 +13,21 @@ void print_pll(pll *head)
 pll *path_ll()
 {
 	extern char **environ;
-	char *_paths_o = find_path(environ), *_path = NULL;
-	char *_paths = strdup(_paths_o);
+	char *_path;
+	char *_paths = find_path(environ);
 
 	int i, num_paths = 0;
 	pll *head = NULL, *original_head, *new_node;
 
-	_path = strtok(_paths, ":");
+	_path = _strtok(_strdup(_paths), ":");
 
 	while (_path != NULL)
 	{
 		num_paths++;
-		_path = strtok(NULL, ":");
+		_path = _strtok(NULL, ":");
 	}
 
-	_paths = _paths_o;
-	_path = strtok(_paths, ":");
+	_path = _strtok(_paths, ":");
 	for (i = 0; i < num_paths; i++)
 	{
 		if (i == 0)
@@ -49,7 +48,7 @@ pll *path_ll()
 			new_node = NULL;
 		head->next = new_node;
 		head = new_node;
-		_path = strtok(NULL, ":");
+		_path = _strtok(NULL, ":");
 	}
 
 	return (original_head);
