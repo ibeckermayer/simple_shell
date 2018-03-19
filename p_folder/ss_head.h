@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#define _BUFSIZ 1024
 typedef struct p_ll
 {
 	char *pdir;
@@ -23,7 +22,7 @@ char *find_path(char **environ);
 char *_strdup(char *str);
 char *get_input(void);
 int _getppid(void);
-void show_prompt(void);
+char *show_prompt(char *buffer);
 char *f_cmd(char *command, char *path);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
 #endif
