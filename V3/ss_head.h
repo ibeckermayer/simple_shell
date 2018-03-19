@@ -11,14 +11,17 @@
 #define _BUFSIZ 1024
 #define MAX_CMD_LEN  128
 #define HISTORY_COUNT 1 << 10
+#define INPUT_DELIM " "
+#define PROMPT ";)$ "
+#define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
-typedef struct p_ll
+typedef struct string_linked_list
 {
-	char *pdir;
-	struct p_ll *next;
-} pll;
-
-pll *path_ll(void);
+	char *str;
+	struct string_linked_list *next;
+} sll;
+sll *gen_sll(char *str, char *delim);
+void print_sll(sll *head);
 int _strlen(const char *s);
 char *_strcat(char *dest, char *src);
 char *_getenv(const char *name);

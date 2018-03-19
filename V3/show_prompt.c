@@ -8,5 +8,5 @@
 
 void show_prompt(void)
 {
-	write(1, ";)$ ", 4);
+	write(1, PROMPT, PROMPT_LEN);
 }
