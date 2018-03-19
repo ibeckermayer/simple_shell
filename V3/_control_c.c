@@ -2,5 +2,7 @@
 
 void _control_c(int sig)
 {
-     signal(sig, SIG_IGN);
+	/* ctrl_c = 1; */
+	/* printf("\n"); */
+	signal(sig, SIG_IGN);
 }

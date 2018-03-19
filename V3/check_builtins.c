@@ -8,7 +8,7 @@ int check_builtins(char *input)
 {
 	if (_strcmp(input, "history") == 0 || _strcmp(input, "h") == 0)
 	{
-		_shistory(history);
+		_shistory(input, 0);
 		return (0);
 	}
 	else if (_strcmp(input, "clear") == 0)

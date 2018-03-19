@@ -12,16 +12,15 @@ int main(int argc, char **argv)
 	int err_msg_len = _strlen(err_msg);
 	int status, i;
 	sll *input_toks;
-	cur_his = 0;
 
 	UNUSED(argc);
 
-	/* check control-c */
-	signal(SIGINT, _control_c);
 
-	/* initialize history array !!! history will eventually get filled */
 	while (1)
 	{
+		/* check control-c */
+		signal(SIGINT, _control_c);
+
 		/* display prompt and wait for input */
 		show_prompt();
 		input = get_input();
@@ -29,7 +28,7 @@ int main(int argc, char **argv)
 		/* Add to history unless it is an empty string or return*/
 		if (_strcmp(input, "\n") != 0)
 		{
-			add2his(input);
+			_shistory(input, 1);
 		}
 
 		/* tokenize input */

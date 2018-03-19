@@ -17,8 +17,6 @@
 #define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
 
-char *history[HISTORY_COUNT];
-int cur_his;
 typedef struct string_linked_list
 {
 	char *str;
@@ -41,9 +39,9 @@ int _strcmp(const char *s1, const char *s2);
 void print_env(void);
 void _sexit(void);
 void _sclear(void);
-void _shistory(char **history);
+void _shistory(char *input, int add);
 char *_strtok(char *s, char *delim);
-int check_builtins(char * input);
+int check_builtins(char *input);
 char *_itoa(int val, int base);
 void _control_c(int sig);
 
