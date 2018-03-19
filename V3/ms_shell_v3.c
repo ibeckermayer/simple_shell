@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 		}
 
 		i = 0;
-		printf("\n**********ON-GOIN History*************\n");
+		printf("\n**********Perpetual History*************\n");
 		while (history[i])
 		{
 			printf("%s\n", history[i++]);
