@@ -18,7 +18,7 @@ int check_builtins(char *input)
 	}
 	else if (_strcmp(input, "exit") == 0 || _strcmp(input, "quit") == 0 || _strcmp(input, "") == 0)
 	{
-		_sclear();
+		write(1, "\n", 1);
 		_sexit();
 	}
 	else if (_strcmp(input, "env") == 0)
