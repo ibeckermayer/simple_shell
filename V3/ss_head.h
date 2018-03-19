@@ -2,6 +2,7 @@
 #define _SS_HEADER__
 
 #include <stdio.h>
+#include <signal.h>
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
@@ -44,4 +45,6 @@ void _shistory(char **history);
 char *_strtok(char *s, char *delim);
 int check_builtins(char * input);
 char *_itoa(int val, int base);
+void _control_c(int sig);
+
 #endif
