@@ -1,8 +1,8 @@
 #include "ss_head.h"
 /**
-* main - medium version of shell w/continue prompt & added command functionality
-* Return: 0
-*/
+ * main - medium version of shell w/continue prompt & added command functionality
+ * Return: 0
+ */
 
 int main(int argc, char **argv)
 {
@@ -21,13 +21,13 @@ int main(int argc, char **argv)
 
 		/* Add to history */
 
-        while (i < HISTORY_COUNT)
-                history[i++] = NULL;
+		while (i < HISTORY_COUNT)
+			history[i++] = NULL;
 
-        history[current] = _strdup(buffer);
-        current++;
+		history[current] = _strdup(buffer);
+		current++;
 
-        /* check for built-ins */
+		/* check for built-ins */
 
 		if (_strcmp(buffer, "history") == 0 || _strcmp(buffer, "h") == 0)
 		{
@@ -73,12 +73,12 @@ int main(int argc, char **argv)
 			write(2, err_msg, err_msg_len);
 		}
 
-		i = 0;
-		printf("\n**********Perpetual History*************\n");
-		while (history[i])
-		{
-			printf("%s\n", history[i++]);
-		}
-		printf("\n");
+		/* i = 0; */
+		/* printf("\n**********Perpetual History*************\n"); */
+		/* while (history[i]) */
+		/* { */
+		/* 	printf("%s\n", history[i++]); */
+		/* } */
+		/* printf("\n"); */
 	}
 }
