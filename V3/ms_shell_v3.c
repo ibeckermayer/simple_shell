@@ -50,7 +50,7 @@ int main(int argc, char **argv)
 			continue;
 		}
 
-		full_prog_path = f_cmd(_strtok(strdup(buffer), " "));
+		full_prog_path = f_cmd(_strtok(_strdup(buffer), " "));
 
 		/* need to reset _strtok because f_cmd calls it and is static*/
 		_strtok(buffer, " ");
