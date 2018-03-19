@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 	cur_his = 0;
 
 	UNUSED(argc);
-	
+
 	/* check control-c */
 	signal(SIGINT, _control_c);
 
