@@ -14,6 +14,9 @@ int main(int argc, char **argv)
 	sll *input_toks;
 
 	UNUSED(argc);
+	
+	/* check control-c */
+	signal(SIGINT, _control_c);
 
 	/* initialize history array !!! history will eventually get filled */
 	while (1)

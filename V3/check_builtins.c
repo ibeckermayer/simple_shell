@@ -6,6 +6,7 @@
 
 int check_builtins(char *input)
 {
+
 	if (_strcmp(input, "history") == 0 || _strcmp(input, "h") == 0)
 	{
 		_shistory(history);
