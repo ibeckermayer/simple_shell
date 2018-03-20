@@ -47,7 +47,7 @@ void _sexit(void);
 void _sclear(void);
 void _shistory(char *input, int add);
 char *_strtok(char *s, char *delim);
-int check_builtins(char *input);
+int check_builtins(sll *head);
 char *_itoa(int val, int base);
 void _control_c(int sig);
 void _cd(char *input);
