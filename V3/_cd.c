@@ -29,7 +29,7 @@ void _cd(sll *head)
     else
     {
         getcwd(cur_dir, size);
-        user_dir = _strcat(cur_dir, head->next->str);
+        user_dir = _strcat_slash(cur_dir, head->next->str);
         
         if (access(user_dir, F_OK) == 0)
         {

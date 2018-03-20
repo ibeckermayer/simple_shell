@@ -32,7 +32,7 @@ sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);
 int _strlen(const char *s);
-char *_strcat(char *dest, char *src);
+char *_strcat_slash(char *dest, char *src);
 char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
@@ -52,5 +52,6 @@ char *_itoa(int val, int base);
 void _control_c(int sig);
 void _cd(sll *head);
 char *cut_off(char *to_cut, int num_to_cut);
+char *_strcat_slash(char *dest, char *src);
 
 #endif

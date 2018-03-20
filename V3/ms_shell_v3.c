@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
 	char *full_prog_path;
-	char *err_msg = _strcat(argv[0], ": No such file or directory\n");
+	char *err_msg = _strcat_slash(argv[0], ": No such file or directory\n");
 	int err_msg_len = _strlen(err_msg);
 	int status, i;
 	sll *input_toks;
