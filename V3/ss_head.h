@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <errno.h>
 #define _BUFSIZ 1024
 #define HISTORY_COUNT 1024
 #define INPUT_DELIM " "
@@ -31,7 +32,7 @@ sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);
 int _strlen(const char *s);
-char *_strcat(char *dest, char *src);
+char *_strcat_slash(char *dest, char *src);
 char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
@@ -46,8 +47,11 @@ void _sexit(void);
 void _sclear(void);
 void _shistory(char *input, int add);
 char *_strtok(char *s, char *delim);
-int check_builtins(char *input);
+int check_builtins(sll *head);
 char *_itoa(int val, int base);
 void _control_c(int sig);
+void _cd(sll *head);
+char *cut_off(char *to_cut, int num_to_cut);
+char *_strcat_slash(char *dest, char *src);
 
 #endif

@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
 	char *full_prog_path;
-	char *err_msg = _strcat(argv[0], ": No such file or directory\n");
+	char *err_msg = _strcat_slash(argv[0], ": No such file or directory\n");
 	int err_msg_len = _strlen(err_msg);
 	int status, i;
 	sll *input_toks;
@@ -32,11 +32,11 @@ int main(int argc, char **argv)
 			_shistory(input, 1);
 		}
 
-		/* tokenize input */
+		/* tokenize input  unless it's cd*/
 		input_toks = gen_sll(input, INPUT_DELIM);
 
 		/* check for built-ins */
-		if (check_builtins(input) == 0)
+		if (check_builtins(input_toks) == 0)
 			continue;
 
 		if (input_toks)
