@@ -27,12 +27,6 @@ typedef struct string_linked_list
 	char *str;
 	struct string_linked_list *next;
 } sll;
-
-typedef struct p_ll
-{
-	char *pdir;
-	struct p_ll *next;
-} pll;
 extern char **environ;
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);

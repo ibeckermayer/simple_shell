@@ -33,7 +33,9 @@ int main(int argc, char **argv)
 		}
 
 		/* tokenize input  unless it's cd*/
-		if (input[0] != 'c' && input[1] != 'd')
+		if (input[0] == 'c' && input[1] == 'd')
+			;
+		else
 			input_toks = gen_sll(input, INPUT_DELIM);
 
 		/* check for built-ins */

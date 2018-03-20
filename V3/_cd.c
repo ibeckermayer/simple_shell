@@ -1,4 +1,10 @@
 #include "ss_head.h"
+/**
+ * _cd - custom cd built-in, allows end-user to change directories
+ * @input: the input line recieved
+ *
+ * Return: void
+ */
 
 void _cd(char *input)
 {
