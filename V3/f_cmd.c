@@ -23,7 +23,7 @@ char *f_cmd(char *command)
 
 	while (_paths != NULL)
 	{
-		full_path = _strcat(_paths, command);
+		full_path = _strcat_slash(_paths, command);
 		if (access(full_path, F_OK) == 0)
 		{
 			found = 1;

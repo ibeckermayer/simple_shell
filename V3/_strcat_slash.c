@@ -6,7 +6,7 @@
 * @src: source string to append to
 * Return: th dest
 */
-char *_strcat(char *dest, char *src)
+char *_strcat_slash(char *dest, char *src)
 {
 	int size = 0, size2 = 0, j = 0, k = 0, total = 0;
 	char *final;
@@ -24,6 +24,7 @@ char *_strcat(char *dest, char *src)
 		final[j] = dest[j];
 		j++;
 	}
+	final[j++] = '/';
 
 	for (k = 0; j < total; j++, k++)
 		final[j] = src[k];

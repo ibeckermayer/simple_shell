@@ -13,6 +13,11 @@ int check_builtins(char *input)
 		_shistory(input, 0);
 		return (0);
 	}
+	else if (_strcmp(input, "setenv") == 0)
+	{
+		_setenv("NEWVAR", "NEWVAL!");
+		return (0);
+	}
 	else if (_strcmp(input, "clear") == 0)
 	{
 		_sclear();

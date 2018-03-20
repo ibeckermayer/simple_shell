@@ -27,11 +27,13 @@ typedef struct string_linked_list
 	struct string_linked_list *next;
 } sll;
 extern char **environ;
+char *_strcpy(char *dest, char *src);
+void _setenv(char *name, char *value);
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);
 int _strlen(const char *s);
-char *_strcat(char *dest, char *src);
+char *_strcat_slash(char *dest, char *src);
 char *_getenv(const char *name);
 char *find_path(char **environ);
 char *_strdup(char *str);
@@ -49,5 +51,5 @@ char *_strtok(char *s, char *delim);
 int check_builtins(char *input);
 char *_itoa(int val, int base);
 void _control_c(int sig);
-
+char *_strcat(char *dest, char *src);
 #endif

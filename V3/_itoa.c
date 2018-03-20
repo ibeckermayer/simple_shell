@@ -1,4 +1,4 @@
- #include "ss_head.h"
+#include "ss_head.h"
 /**
  * _itoa - converts int to character
  * code based on: http://www.strudel.org.uk/itoa/
