@@ -8,9 +8,14 @@
 
 int check_builtins(sll *head)
 {
-	if (head == NULL || _strcmp(head->str, "exit") == 0 || _strcmp(head->str, "quit") == 0)
+	if (head == NULL)
 	{
-		write(1, "\n", 1);
+		if (isatty(0))
+			write(1, "\n", 1);
+		_sexit();
+	}
+	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "quit") == 0)
+	{
 		_sexit();
 	}
 	else if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)

@@ -17,13 +17,17 @@ int main(int argc, char **argv)
 
 	UNUSED(argc);
 
+	/* Check for interative vs. non-interative mode */
 	while (1)
 	{
 		/* check control-c */
 		signal(SIGINT, _control_c);
 
-		/* display prompt and wait for input */
-		show_prompt();
+		/* Check for interative vs. non-interative mode */
+		if (isatty(0))
+			show_prompt();
+
+		/* get input */
 		input = get_input();
 
 		/* Add to history unless it is an empty string or return*/
