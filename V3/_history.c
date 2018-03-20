@@ -1,5 +1,11 @@
 #include "ss_head.h"
 
+/**
+ * shifthis - shifts the history buffer down once it reaches its memory limit
+ * @history: the history buffer
+ *
+ * Return: void
+ */
 void shifthis(char **history)
 {
 	int i;
@@ -9,17 +15,20 @@ void shifthis(char **history)
 }
 
 /**
- * _history - clear the screen
+ * _shistory - clear the screen
+ * @input: the input taken from the main
+ * @add: if 1, we are adding to the history. if 0, we are displaying it.
+ *
  * Return: void
  */
 void _shistory(char *input, int add)
 {
-        int i = 0;
+	int i = 0;
 	int his_num;
 	int his_tot;
-	static int cur_his = 0;
+	static int cur_his;
 	static char *history[HISTORY_COUNT];
-        char *num;
+	char *num;
 
 	if (add)
 	{

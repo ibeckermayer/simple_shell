@@ -1,11 +1,12 @@
 #include "ss_head.h"
 
 /**
-* find_command - find shell commands PATH
+* f_cmd - find shell commands PATH
 * @command: commands name
-* Return: PATH to command, NULL if no command given, empty string ("") if command not found
+*
+* Return: PATH to command, NULL if no command given,
+* empty string ("") if command not found
 */
-
 char *f_cmd(char *command)
 {
 	char *_paths = NULL, *full_path;
@@ -33,5 +34,5 @@ char *f_cmd(char *command)
 	if (!found)
 		return ("");
 
-	return(full_path);
+	return (full_path);
 }

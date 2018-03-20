@@ -1,6 +1,8 @@
 #include "ss_head.h"
 /**
  * check_builtins - checks for builtins
+ * @input: the input line recieved
+ *
  * Return: either 1 or 0, 0 for success
  */
 
@@ -16,7 +18,9 @@ int check_builtins(char *input)
 		_sclear();
 		return (0);
 	}
-	else if (_strcmp(input, "exit") == 0 || _strcmp(input, "quit") == 0 || _strcmp(input, "") == 0)
+	else if (_strcmp(input, "exit") == 0 ||
+		 _strcmp(input, "quit") == 0 ||
+		 _strcmp(input, "") == 0)
 	{
 		write(1, "\n", 1);
 		_sexit();
@@ -26,7 +30,7 @@ int check_builtins(char *input)
 		print_env();
 		return (0);
 	}
-	else if(_strcmp(input, "\n") == 0)
+	else if (_strcmp(input, "\n") == 0)
 	{
 		return (0);
 	}

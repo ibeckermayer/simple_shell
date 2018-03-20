@@ -1,6 +1,8 @@
 #include "ss_head.h"
 /**
  * main - medium version of shell w/continue prompt & added command functionality
+ * @argc: argument count
+ * @argv: argument buffer
  * Return: 0
  */
 int main(int argc, char **argv)

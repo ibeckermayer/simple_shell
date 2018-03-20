@@ -5,7 +5,7 @@
  * @s: the string to be tokenized
  * @delim: the delimiter
  *
- * Return - pointer to the next token in the string
+ * Return: pointer to the next token in the string
  */
 char *_strtok(char *s, char *delim)
 {

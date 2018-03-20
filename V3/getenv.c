@@ -3,12 +3,12 @@
 /**
 * _getenv - get environment varaible
 * @name: name of variable
+*
 * Return: environment location
 */
-
 char *_getenv(const char *name)
 {
-	extern char **environ;
+
 	int len = _strlen(name);
 	int i = 0;
 	int j;
@@ -27,5 +27,5 @@ char *_getenv(const char *name)
 			return (environ[i] + len + 1);
 		i++;
 	}
-	return NULL;
+	return (NULL);
 }

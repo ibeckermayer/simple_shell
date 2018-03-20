@@ -2,10 +2,9 @@
 
 /**
 * show_prompt - shows prompt
-* @buffer: buffer to store
+*
 * Return: void
 */
-
 void show_prompt(void)
 {
 	write(1, PROMPT, PROMPT_LEN);

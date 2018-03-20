@@ -16,12 +16,17 @@
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
-
+/**
+ * struct string_linked_list - a linked list of strings
+ * @str: the string
+ * @next: next in the list
+ */
 typedef struct string_linked_list
 {
 	char *str;
 	struct string_linked_list *next;
 } sll;
+extern char **environ;
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);

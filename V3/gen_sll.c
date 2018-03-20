@@ -1,5 +1,11 @@
 #include "ss_head.h"
 
+/**
+ * print_sll - prints a string linked list
+ * @head: the head of the list
+ *
+ * Return: void
+ */
 void print_sll(sll *head)
 {
 	while (head)
@@ -10,6 +16,14 @@ void print_sll(sll *head)
 }
 
 /* !!! check for if PATH is unset */
+
+/**
+ * gen_sll - generate a string linked list given a delimeter
+ * @str: the string to be searched through
+ * @delim: the delimeter
+ *
+ * Return: the head of the sll
+ */
 sll *gen_sll(char *str, char *delim)
 {
 	char *curr_tok;
