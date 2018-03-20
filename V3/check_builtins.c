@@ -18,10 +18,9 @@ int check_builtins(sll *head)
 		_shistory(head->str, 0);
 		return (0);
 	}
-	/* !!! */
 	else if (_strcmp(head->str, "setenv") == 0)
 	{
-		_setenv(head->next->str, head->next->next->str");
+		_setenv(head->next->str, head->next->next->str);
 		return (0);
 	}
 	else if (_strcmp(head->str, "clear") == 0)
