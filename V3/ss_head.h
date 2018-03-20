@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <errno.h>
 #define _BUFSIZ 1024
 #define HISTORY_COUNT 1024
 #define INPUT_DELIM " "
@@ -26,6 +27,12 @@ typedef struct string_linked_list
 	char *str;
 	struct string_linked_list *next;
 } sll;
+
+typedef struct p_ll
+{
+	char *pdir;
+	struct p_ll *next;
+} pll;
 extern char **environ;
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
@@ -49,5 +56,7 @@ char *_strtok(char *s, char *delim);
 int check_builtins(char *input);
 char *_itoa(int val, int base);
 void _control_c(int sig);
+void _cd(char *input);
+char *cut_off(char *to_cut, int num_to_cut);
 
 #endif
