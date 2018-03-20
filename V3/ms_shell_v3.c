@@ -32,11 +32,11 @@ int main(int argc, char **argv)
 			_shistory(input, 1);
 		}
 
-		/* tokenize input */
+		/* tokenize input  unless it's cd*/
 		input_toks = gen_sll(input, INPUT_DELIM);
 
 		/* check for built-ins */
-		if (check_builtins(input) == 0)
+		if (check_builtins(input_toks) == 0)
 			continue;
 
 		if (input_toks)
