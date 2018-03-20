@@ -50,7 +50,7 @@ char *_strtok(char *s, char *delim);
 int check_builtins(sll *head);
 char *_itoa(int val, int base);
 void _control_c(int sig);
-void _cd(char *input);
+void _cd(sll *head);
 char *cut_off(char *to_cut, int num_to_cut);
 
 #endif

@@ -8,27 +8,20 @@
 
 int check_builtins(sll *head)
 {
-
-	if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)
+	if (head == NULL || _strcmp(head->str, "exit") == 0 || _strcmp(head->str, "quit") == 0)
 	{
-		while (head)
-		{
-			_shistory(head->str, 0);
-			head = head->next;
-		}
+		write(1, "\n", 1);
+		_sexit();
+	}
+	else if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)
+	{
+		_shistory(head->str, 0);
 		return (0);
 	}
 	else if (_strcmp(head->str, "clear") == 0)
 	{
 		_sclear();
 		return (0);
-	}
-	else if (_strcmp(head->str, "exit") == 0 ||
-		 _strcmp(head->str, "quit") == 0 ||
-		 _strcmp(head->str, "") == 0)
-	{
-		write(1, "\n", 1);
-		_sexit();
 	}
 	else if (_strcmp(head->str, "env") == 0)
 	{
@@ -37,6 +30,11 @@ int check_builtins(sll *head)
 	}
 	else if (_strcmp(head->str, "\n") == 0)
 	{
+		return (0);
+	}
+	else if (_strcmp(head->str, "cd") == 0)
+	{
+		_cd(head);
 		return (0);
 	}
 	return (1);
