@@ -36,11 +36,11 @@ void _cd(char *input)
             chdir(user_dir);
 
             if (chdir(user_dir) == -1)
-                printf("(chdir) Error: %s\n", strerror(errno));
+                printf("Error: %s\n", strerror(errno));
         }
         else if (access(user_dir, F_OK) == -1)
         {
-            printf("(access) Error: %s\n", strerror(errno));
+            printf("Error: %s\n", strerror(errno));
         }
     }
 }
