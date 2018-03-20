@@ -55,4 +55,5 @@ char *_strcat(char *dest, char *src);
 void _cd(sll *head);
 char *cut_off(char *to_cut, int num_to_cut);
 char *_strcat_slash(char *dest, char *src);
+void set_unset(char *dir);
 #endif
