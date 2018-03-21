@@ -8,6 +8,7 @@
 void tests(void)
 {
 	char *input;
+
 	write(1, "\n***;)******;)*********;)*****\n", 32);
 	write(1, "*******************WELCOME****\n", 31);
 	write(1, "*********;)*******TO**********\n", 31);
@@ -26,7 +27,7 @@ void tests(void)
 			_sclear();
 			break;
 		}
-		else if(_strcmp(input, "c") == 0)
+		else if (_strcmp(input, "c") == 0)
 		{
 			_sclear();
 			continue;
