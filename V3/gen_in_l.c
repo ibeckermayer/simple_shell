@@ -14,6 +14,15 @@ sll **gen_in_l(sll **input_list, char *s)
 	int inp_len = _strlen(s);
 
 	i = j = 0;
+
+	/* check if this is just an 'enter' */
+	if (_strcmp(s, "\n") == 0)
+	{
+		input_list[i] = gen_sll(s, " ");
+		return (input_list);
+	}
+
+
 	while(s[i])
 	{
 		if (s[i] == '\n' || s[i] == ';')
