@@ -8,9 +8,14 @@
 
 void _cd(sll *head)
 {
-	char *user_dir = _getenv("HOME"), *prev_dir = _getenv("OLDPWD");
+	char *user_dir = _getenv("HOME"), *prev_dir = _getenv("OLDPWD"),
+	*err_msg, *name = _getenv("_=");
 	char cur_dir[_BUFSIZ];
 	size_t size = _BUFSIZ;
+
+	/* checks to see if global error is 0 to  start counting at 1 */
+	if (!num_errors)
+		num_errors++;
 
 	if (_strcmp(head->str, "cd") == 0 && !head->next)
 	{
@@ -43,11 +48,18 @@ void _cd(sll *head)
 			chdir(user_dir);
 
 			if (chdir(user_dir) == -1)
-				perror("Error: ");
+			{
+				err_msg = get_error(name + 1, num_errors, head);
+				write(1, err_msg, _strlen(err_msg));
+				num_errors++;
+			}
 		}
 		else if (access(user_dir, F_OK) == -1)
 		{
-			perror("Error: ");
+			err_msg = get_error(name + 1, num_errors, head);
+			write(1, err_msg, _strlen(err_msg));
+			num_errors++;
+
 		}
 	}
 }

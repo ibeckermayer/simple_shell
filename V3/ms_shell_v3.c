@@ -10,10 +10,13 @@ int main(int argc, char **argv)
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
 	char *full_prog_path;
-	char *err_msg = _strcat_slash(argv[0], ": No such file or directory\n");
-	int err_msg_len = _strlen(err_msg);
+	char *err_msg = malloc(_BUFSIZ);
 	int status, i;
 	sll *input_toks;
+
+	/* checks to see if global error is 0 to  start counting at 1 */
+	if (!num_errors)
+		num_errors++;
 
 	UNUSED(argc);
 
@@ -67,7 +70,9 @@ int main(int argc, char **argv)
 		}
 		else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 		{
-			write(2, err_msg, err_msg_len);
+			err_msg = get_error(argv[0] + 2, num_errors, input_toks);
+			write(2, err_msg, _strlen(err_msg));
+			num_errors++;
 		}
 		else
 			continue;
