@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
+#include <termios.h>
 #define _BUFSIZ 1024
 #define HISTORY_COUNT 1024
 #define INPUT_DELIM " "
@@ -47,7 +48,7 @@ int _strcmp(const char *s1, const char *s2);
 void print_env(void);
 void _sexit(void);
 void _sclear(void);
-void _shistory(char *input, int add);
+char **_shistory(char *input, int add);
 char *_strtok(char *s, char *delim);
 int check_builtins(sll *head);
 char *_itoa(int val, int base);
@@ -58,4 +59,7 @@ char *cut_off(char *to_cut, int num_to_cut);
 char *_strcat_slash(char *dest, char *src);
 void set_unset(char *dir);
 void tests(void);
+void check_arr(char **history);
+int getch(void);
+int getche(void);
 #endif

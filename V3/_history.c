@@ -21,14 +21,21 @@ void shifthis(char **history)
  *
  * Return: void
  */
-void _shistory(char *input, int add)
+char **_shistory(char *input, int add)
 {
 	int i = 0;
 	int his_num;
 	int his_tot;
 	static int cur_his;
 	static char *history[HISTORY_COUNT];
+	char **r_history = malloc(_BUFSIZ);
 	char *num;
+
+	if (add == 2)
+	{
+		r_history = history;
+		return (r_history);
+	}
 
 	if (add)
 	{
@@ -73,4 +80,5 @@ void _shistory(char *input, int add)
 			write(1, "\n", 1);
 		}
 	}
+	return (r_history);
 }

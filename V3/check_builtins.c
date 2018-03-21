@@ -53,5 +53,11 @@ int check_builtins(sll *head)
 		tests();
 		return (0);
 	}
+	else if (_strcmp(head->str, "arrow") == 0)
+	{
+		/* check arrows */
+		check_arr(_shistory(head->str, 2));
+		return (0);
+	}
 	return (1);
 }
