@@ -11,6 +11,7 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <assert.h>
 #define _BUFSIZ 1024
 #define HISTORY_COUNT 1024
 #define INPUT_DELIM " "
@@ -28,6 +29,7 @@ typedef struct string_linked_list
 	struct string_linked_list *next;
 } sll;
 extern char **environ;
+int num_errors;
 char *_strcpy(char *dest, char *src);
 void _setenv(char *name, char *value);
 sll *gen_sll(char *str, char *delim);
@@ -56,4 +58,6 @@ void _cd(sll *head);
 char *cut_off(char *to_cut, int num_to_cut);
 char *_strcat_slash(char *dest, char *src);
 void set_unset(char *dir);
+void tests(void);
+char *get_error(char *prog_name, int num_errors, sll *head);
 #endif
