@@ -27,9 +27,13 @@ sll **gen_in_l(sll **input_list, char *s)
 	{
 		if (s[i] == '\n' || s[i] == ';')
 		{
-			s[i] = '\0';
-			i++;
-			input_list[j++] = gen_sll(cur_str, " ");
+			/* !!! ; behavior should be different than \n */
+			while (s[i] == '\n' || s[i] == ';')
+			{
+				s[i] = '\0';
+				i++;
+			}
+			input_list[j++] = gen_sll(_strdup(cur_str), " ");
 			cur_str = s + i;
 		}
 		/* !!! edgecase where && is at the very end */
@@ -41,7 +45,7 @@ sll **gen_in_l(sll **input_list, char *s)
 					s[i] = '\0';
 					s[i + 1] = '\0';
 					i += 2;
-					input_list[j++] = gen_sll(cur_str, " ");
+					input_list[j++] = gen_sll(_strdup(cur_str), " ");
 					cur_str = s + i;
 				}
 				else
@@ -52,7 +56,7 @@ sll **gen_in_l(sll **input_list, char *s)
 		else
 			i++;
 	}
-	input_list[j++] = gen_sll(cur_str, " ");
+	input_list[j++] = gen_sll(_strdup(cur_str), " ");
 	input_list[j] = NULL;
 
 	return (input_list);
