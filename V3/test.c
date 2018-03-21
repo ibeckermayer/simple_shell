@@ -51,6 +51,6 @@ void tests(void)
 		assert(head == NULL);
 
 		/* will only print if all tests are successful */
-		printf("No errors.\n");
+		write(1, "No errors.\n", 11);
 	}
 }
