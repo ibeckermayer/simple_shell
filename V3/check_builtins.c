@@ -1,13 +1,14 @@
 #include "ss_head.h"
 /**
  * check_builtins - checks for builtins
- * @input: the input line recieved
+ * @head: the input line recieved
  *
  * Return: either 1 or 0, 0 for success
  */
 
 int check_builtins(sll *head)
 {
+	/* check for cntrl-d and interative vs non-interative modes */
 	if (head == NULL)
 	{
 		if (isatty(0))

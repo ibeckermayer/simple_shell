@@ -1,6 +1,6 @@
 #include "ss_head.h"
 /**
- * cut_off - helper function for cd to cut x characters from the front of a string
+ * cut_off - helper function for cd to cut x characters
  * @to_cut: buffer to remove characters from
  * @num_to_cut: number of characters to cut
  *
@@ -14,7 +14,7 @@ char *cut_off(char *to_cut, int num_to_cut)
 
 	result = malloc((i - num_to_cut) + 1);
 	if (!result)
-		exit (-1);
+		exit(-1);
 
 	while (j < i)
 		result[k++] = to_cut[j++];

@@ -1,7 +1,7 @@
 #include "ss_head.h"
 
 /**
-* _strcat_slash - concatinates two strings
+* _strcat - concatinates two strings
 * @dest: string to be appende
 * @src: source string to append to
 * Return: th dest

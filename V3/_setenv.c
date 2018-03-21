@@ -3,6 +3,7 @@
 /**
 * _setenv - set environment varaible
 * @name: name of variable
+* @value: value to set
 *
 * Return: void
 */

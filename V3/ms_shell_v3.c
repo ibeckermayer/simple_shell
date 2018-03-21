@@ -1,6 +1,6 @@
 #include "ss_head.h"
 /**
- * main - medium version of shell w/continue prompt & added command functionality
+ * main - medium version of shell w/continue prompt & added cmd functionality
  * @argc: argument count
  * @argv: argument buffer
  * Return: 0
@@ -17,7 +17,6 @@ int main(int argc, char **argv)
 
 	UNUSED(argc);
 
-	/* Check for interative vs. non-interative mode */
 	while (1)
 	{
 		/* check control-c */
