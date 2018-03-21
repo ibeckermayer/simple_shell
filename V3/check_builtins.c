@@ -15,7 +15,7 @@ int check_builtins(sll *head)
 			write(1, "\n", 1);
 		_sexit();
 	}
-	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "quit") == 0)
+	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "q") == 0)
 	{
 		_sexit();
 	}
@@ -46,6 +46,11 @@ int check_builtins(sll *head)
 	else if (_strcmp(head->str, "cd") == 0)
 	{
 		_cd(head);
+		return (0);
+	}
+	else if (_strcmp(head->str, "checker") == 0)
+	{
+		tests();
 		return (0);
 	}
 	return (1);

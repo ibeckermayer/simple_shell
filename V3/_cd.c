@@ -15,12 +15,17 @@ void _cd(sll *head)
 	if (_strcmp(head->str, "cd") == 0 && !head->next)
 	{
 		if (access(user_dir, F_OK) == 0)
-		{
 			set_unset(user_dir);
-		}
+	}
+	else if (_strcmp(head->next->str, "~") == 0)
+	{
+		if (access(user_dir, F_OK) == 0)
+			set_unset(user_dir);
 	}
 	else if (_strcmp(head->next->str, "-") == 0)
 	{
+		write(1, prev_dir, _strlen(prev_dir));
+		write(1, "\n", 1);
 		set_unset(prev_dir);
 	}
 	else if (_strcmp(head->next->str, ".") == 0)
