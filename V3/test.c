@@ -8,6 +8,7 @@
 void tests(void)
 {
 	char *input;
+	sll *head;
 
 	write(1, "\n***;)******;)*********;)*****\n", 32);
 	write(1, "*******************WELCOME****\n", 31);
@@ -33,7 +34,7 @@ void tests(void)
 			continue;
 		}
 
-		sll *head = gen_sll(input, INPUT_DELIM);
+		head = gen_sll(input, INPUT_DELIM);
 
 		/* check get_input is working */
 		assert(input != NULL);

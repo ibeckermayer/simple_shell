@@ -18,12 +18,12 @@ char *f_cmd(char *command)
 
 	_paths = _strtok(strdup(_path), ":");
 
-	if (access(command, F_OK) == 0)
-		return (command);
-
+	/* first parse through PATH and look for it */
 	while (_paths != NULL)
 	{
 		full_path = _strcat_slash(_paths, command);
+
+		/* if you find it, found = 1 and break */
 		if (access(full_path, F_OK) == 0)
 		{
 			found = 1;
@@ -31,8 +31,15 @@ char *f_cmd(char *command)
 		}
 		_paths = _strtok(NULL, ":");
 	}
-	if (!found)
-		return ("");
 
-	return (full_path);
+	/* if found return the full path */
+	if (found)
+		return (full_path);
+
+	/* if you don't find in PATH, check absolute path */
+	if (access(command, F_OK) == 0)
+		return (command);
+
+	/* otherwise return an empty string */
+	return ("");
 }
