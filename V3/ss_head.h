@@ -52,6 +52,7 @@ void _shistory(char *input, int add);
 char *_strtok(char *s, char *delim);
 int check_builtins(sll *head);
 char *_itoa(int val, int base);
+sll **gen_in_l(sll **input_list, char *str);
 void _control_c(int sig);
 char *_strcat(char *dest, char *src);
 void _cd(sll *head);
