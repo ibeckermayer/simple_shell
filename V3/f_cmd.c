@@ -11,12 +11,13 @@ char *f_cmd(char *command)
 {
 	char *_paths = NULL, *full_path;
 	int found = 0;
-	char *_path = getenv("PATH");
+	char *_path = _getenv("PATH");
+	char *_path_exp = expand_path(_path);
 
 	if (!command)
 		return (NULL);
 
-	_paths = _strtok(strdup(_path), ":");
+	_paths = _strtok(strdup(_path_exp), ":");
 
 	/* first parse through PATH and look for it */
 	while (_paths != NULL)
