@@ -19,6 +19,7 @@ sll **gen_in_l(sll **input_list, char *s)
 	if (_strcmp(s, "\n") == 0)
 	{
 		input_list[i] = gen_sll(s, " ");
+		input_list[i+1] = NULL;
 		return (input_list);
 	}
 
