@@ -52,6 +52,10 @@ int main(int argc, char **argv)
 		{
 			input_toks = input_list[k++];
 
+			/* !!! probably need to check here if the input
+			 is exit or CTRL-D in order to free memory before
+			_exit() is called */
+
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
 				continue;

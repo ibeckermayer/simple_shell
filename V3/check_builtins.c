@@ -17,6 +17,8 @@ int check_builtins(sll *head)
 	}
 	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "q") == 0)
 	{
+		/* !!! could pass another int to history
+		 that lets it know to clear the memory */
 		_sexit();
 	}
 	else if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)
