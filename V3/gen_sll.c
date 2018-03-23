@@ -27,18 +27,23 @@ void print_sll(sll *head)
 sll *gen_sll(char *str, char *delim)
 {
 	char *curr_tok;
+	char *strdup;
 
 	int i, num_toks = 0;
 	sll *head = NULL, *original_head = NULL, *new_node;
 
 	if (str)
-		curr_tok = _strtok(_strdup(str), delim);
+	{
+		strdup = _strdup(str);
+		curr_tok = _strtok(strdup, delim);
+	}
 
 	while (curr_tok != NULL)
 	{
 		num_toks++;
 		curr_tok = _strtok(NULL, delim);
 	}
+	free(strdup);
 
 	curr_tok = _strtok(str, delim);
 	for (i = 0; i < num_toks; i++)

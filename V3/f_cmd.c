@@ -18,9 +18,12 @@ char *f_cmd(char *command)
 		return (NULL);
 
 	if (_path_exp)
+	{
 		_paths = _strtok(_strdup(_path_exp), ":");
+		free(_path_exp);
+		_path_exp = _paths; /* to be freed later */
+	}
 
-	free(_path_exp);
 	/* first parse through PATH and look for it */
 	while (_paths != NULL)
 	{
@@ -34,6 +37,7 @@ char *f_cmd(char *command)
 		free(full_path);
 		_paths = _strtok(NULL, ":");
 	}
+	free(_path_exp);
 
 	/* if found return the full path */
 	if (found)
