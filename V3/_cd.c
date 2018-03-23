@@ -58,8 +58,10 @@ void _cd(sll *head)
 		{
 			err_msg = get_error(name + 1, num_errors, head);
 			write(1, err_msg, _strlen(err_msg));
+			free(err_msg);
 			num_errors++;
 
 		}
+		free(user_dir);
 	}
 }
