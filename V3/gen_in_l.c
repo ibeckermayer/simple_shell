@@ -57,7 +57,9 @@ sll **gen_in_l(sll **input_list, char *s)
 		else
 			i++;
 	}
+	/* cur_str = _strdup(s); */
 	input_list[j++] = gen_sll(_strdup(cur_str), " ");
+	/* free(cur_str); */
 	input_list[j] = NULL;
 
 	return (input_list);
