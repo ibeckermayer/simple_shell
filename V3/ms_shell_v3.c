@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 	char *arguments[_BUFSIZ];
 	sll **input_list = _calloc(_BUFSIZ);
 	char *full_prog_path;
-	char *err_msg = _calloc(_BUFSIZ);
+	char *err_msg;
 	int status, i, k;
 	/* pid_t stats; */
 	/* pid_t _pid; */
@@ -50,8 +50,7 @@ int main(int argc, char **argv)
 		k = 0;
 		do
 		{
-			input_toks = input_list[k];
-			free(input_list[k++]);
+			input_toks = input_list[k++];
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
@@ -87,14 +86,14 @@ int main(int argc, char **argv)
 			{
 				err_msg = get_error(argv[0] + 2, num_errors, input_toks);
 				write(2, err_msg, _strlen(err_msg));
+				free(err_msg);
 				num_errors++;
 			}
 			else
 				continue;
 
-			/* /\* free full_prog_path, no longer needed *\/ */
 			/* free(full_prog_path); */
-
 		} while (input_list[k]);
+		free_sll_l(input_list);
 	}
 }
