@@ -25,24 +25,33 @@ char *f_cmd(char *command)
 	while (_paths != NULL)
 	{
 		full_path = _strcat_slash(_paths, command);
-
 		/* if you find it, found = 1 and break */
 		if (access(full_path, F_OK) == 0)
 		{
 			found = 1;
 			break;
 		}
+		free(full_path);
 		_paths = _strtok(NULL, ":");
 	}
 
 	/* if found return the full path */
 	if (found)
+	{
+		free(command);
 		return (full_path);
+	}
+
 
 	/* if you don't find in PATH, check absolute path */
 	if (access(command, F_OK) == 0)
+	{
+		free(full_path);
 		return (command);
+	}
 
 	/* otherwise return an empty string */
+	free(command);
+	free(full_path);
 	return ("");
 }

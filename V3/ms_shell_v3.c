@@ -90,8 +90,8 @@ int main(int argc, char **argv)
 			else
 				continue;
 
-			/* free full_prog_path, no longer needed */
-			free(full_prog_path);
+			/* /\* free full_prog_path, no longer needed *\/ */
+			/* free(full_prog_path); */
 
 		} while (input_list[k]);
 	}
