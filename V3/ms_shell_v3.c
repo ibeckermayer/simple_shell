@@ -65,7 +65,6 @@ int main(int argc, char **argv)
 			{
 				i = 0;
 				arguments[i++] = full_prog_path;
-
 				input_toks = input_toks->next;
 				while (input_toks)
 				{
@@ -79,6 +78,7 @@ int main(int argc, char **argv)
 					execve(arguments[0], arguments, NULL);
 				else
 				{
+					free(full_prog_path);
 					wait(&status);
 				}
 			}
@@ -90,9 +90,12 @@ int main(int argc, char **argv)
 				num_errors++;
 			}
 			else
+			{
+				free(full_prog_path);
 				continue;
+			}
 
-			/* free(full_prog_path); */
+
 		} while (input_list[k]);
 		free_sll_l(input_list);
 	}
