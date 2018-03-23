@@ -31,7 +31,9 @@ sll *gen_sll(char *str, char *delim)
 	int i, num_toks = 0;
 	sll *head = NULL, *original_head = NULL, *new_node;
 
-	curr_tok = _strtok(_strdup(str), delim);
+	if (str)
+		curr_tok = _strtok(_strdup(str), delim);
+
 	while (curr_tok != NULL)
 	{
 		num_toks++;
@@ -43,7 +45,7 @@ sll *gen_sll(char *str, char *delim)
 	{
 		if (i == 0)
 		{
-			head = malloc(sizeof(sll));
+			head = _calloc(sizeof(sll));
 			if (!head)
 				exit(-1);
 			original_head = head;
@@ -51,7 +53,7 @@ sll *gen_sll(char *str, char *delim)
 		head->str = _strdup(curr_tok);
 		if (i < num_toks - 1)
 		{
-			new_node = malloc(sizeof(sll));
+			new_node = _calloc(sizeof(sll));
 			if (!new_node)
 				exit(-1);
 		}

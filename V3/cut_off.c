@@ -12,7 +12,7 @@ char *cut_off(char *to_cut, int num_to_cut)
 	int i = _strlen(to_cut), j = num_to_cut, k = 0;
 	char *result;
 
-	result = malloc((i - num_to_cut) + 1);
+	result = _calloc((i - num_to_cut) + 1);
 	if (!result)
 		exit(-1);
 

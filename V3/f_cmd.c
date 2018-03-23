@@ -17,7 +17,8 @@ char *f_cmd(char *command)
 	if (!command)
 		return (NULL);
 
-	_paths = _strtok(strdup(_path_exp), ":");
+	if (_path_exp)
+		_paths = _strtok(_strdup(_path_exp), ":");
 
 	/* first parse through PATH and look for it */
 	while (_paths != NULL)

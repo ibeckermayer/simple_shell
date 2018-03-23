@@ -17,7 +17,7 @@ char *_strcat_slash(char *dest, char *src)
 	while (src[size2])
 		size2++;
 
-	final = malloc(total = size + size2 + 2);
+	final = _calloc(total = size + size2 + 2);
 
 	while (dest[j])
 	{

@@ -62,4 +62,5 @@ void set_unset(char *dir);
 void tests(void);
 char *get_error(char *prog_name, int num_errors, sll *head);
 char *expand_path(char *path);
+void *_calloc(int size);
 #endif

@@ -10,9 +10,22 @@
 char *_strtok(char *s, char *delim)
 {
 	static char *last_s;
+	static int size;
+	static char *orig_s;
+
+	if (s)
+	{
+		size = _strlen(s);
+		orig_s = s;
+	}
 
 	if (s == NULL)
-		s = ++last_s;
+	{
+		if (++last_s - orig_s < size)
+			s = last_s;
+		else
+			return (NULL);
+	}
 	while (*s == *delim)
 		s++;
 	if (*s == '\0')

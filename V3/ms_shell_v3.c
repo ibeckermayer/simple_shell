@@ -9,10 +9,12 @@ int main(int argc, char **argv)
 {
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
-	sll **input_list = malloc(_BUFSIZ);
+	sll **input_list = _calloc(_BUFSIZ);
 	char *full_prog_path;
-	char *err_msg = malloc(_BUFSIZ);
+	char *err_msg = _calloc(_BUFSIZ);
 	int status, i, k;
+	/* pid_t stats; */
+	/* pid_t _pid; */
 	sll *input_toks;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
@@ -71,7 +73,9 @@ int main(int argc, char **argv)
 				if (!(fork()))
 					execve(arguments[0], arguments, NULL);
 				else
+				{
 					wait(&status);
+				}
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
