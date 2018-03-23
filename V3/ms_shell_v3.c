@@ -44,6 +44,9 @@ int main(int argc, char **argv)
 		/* generate list of separate commands */
 		input_list = gen_in_l(input_list, input);
 
+		/* free the input, no longer needed */
+		free(input);
+
 		k = 0;
 		do
 		{
@@ -61,6 +64,7 @@ int main(int argc, char **argv)
 			{
 				i = 0;
 				arguments[i++] = full_prog_path;
+
 				input_toks = input_toks->next;
 				while (input_toks)
 				{
@@ -74,7 +78,7 @@ int main(int argc, char **argv)
 					execve(arguments[0], arguments, NULL);
 				else
 				{
-					pid = wait(&status);
+					wait(&status);
 				}
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
@@ -85,6 +89,10 @@ int main(int argc, char **argv)
 			}
 			else
 				continue;
+
+			/* free full_prog_path, no longer needed */
+			free(full_prog_path);
+
 		} while (input_list[k]);
 	}
 }

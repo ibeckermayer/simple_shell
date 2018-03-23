@@ -17,8 +17,8 @@
 #define INPUT_DELIM " "
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
-#define ADDMEM 0
-#define FREEMEM 1
+/* #define ADDMEM 0 */
+/* #define FREEMEM 1 */
 #define UNUSED(x) (void)(x)
 /**
  * struct pointers_ll - a linked list of pointers

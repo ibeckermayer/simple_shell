@@ -15,6 +15,7 @@ void handle_mem(void *ptr, int mode)
 	static pll *new_head;
 	static pll *orig_head;
 
+	/* !!! check for malloc errors in this function */
 	if (!mode)
 	{
 		new_head = malloc(sizeof(pll));

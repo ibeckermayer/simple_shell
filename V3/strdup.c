@@ -18,7 +18,6 @@ char *_strdup(char *str)
 
 	len = _strlen(str);
 	copy = _calloc(len + 1);
-
 	if (copy == NULL)
 		return (NULL);
 

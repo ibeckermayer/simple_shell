@@ -15,6 +15,7 @@ char *_strtok(char *s, char *delim)
 
 	if (s)
 	{
+		free(orig_s);
 		size = _strlen(s);
 		orig_s = s;
 	}
@@ -25,14 +26,18 @@ char *_strtok(char *s, char *delim)
 			s = last_s;
 		else
 		{
-			free(orig_s);
+			/* if (orig_s) */
+				/* free(orig_s); */
 			return (NULL);
 		}
 	}
 	while (*s == *delim)
 		s++;
 	if (*s == '\0')
+	{
 		return (NULL);
+		/* free(orig_s); */
+	}
 	if (s != NULL)
 		last_s = s;
 	last_s = s;
