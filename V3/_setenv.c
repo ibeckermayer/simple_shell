@@ -30,8 +30,7 @@ void _setenv(char *name, char *value)
 			i++;
 		temp1 = _strcat(name, "=");
 		temp2 = _strcat(temp1, value);
-		/* !!! test this!!! */
-		_strcpy(environ[i++], temp2);
+		environ[i++] = _strdup(temp2);
 		environ[i] = NULL;
 		free(temp1);
 		free(temp2);
