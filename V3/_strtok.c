@@ -24,7 +24,10 @@ char *_strtok(char *s, char *delim)
 		if (++last_s - orig_s < size)
 			s = last_s;
 		else
+		{
+			free(orig_s);
 			return (NULL);
+		}
 	}
 	while (*s == *delim)
 		s++;

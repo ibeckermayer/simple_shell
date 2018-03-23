@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 					execve(arguments[0], arguments, NULL);
 				else
 				{
-					wait(&status);
+					pid = wait(&status);
 				}
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
