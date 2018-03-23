@@ -84,7 +84,7 @@ int main(int argc, char **argv)
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
-				err_msg = get_error(argv[0] + 2, num_errors, input_toks);
+				err_msg = get_error(argv[0], num_errors, input_toks);
 				write(2, err_msg, _strlen(err_msg));
 				free(err_msg);
 				num_errors++;
