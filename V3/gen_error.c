@@ -10,7 +10,7 @@
 
 char *get_error(char *prog_name, int num_errors, sll *head)
 {
-	char *err_msg = malloc(_BUFSIZ), *num_errors_s = _itoa(num_errors, 10),
+	char *err_msg, *num_errors_s = _itoa(num_errors, 10),
 	*spaces_1 = ": ", *spaces_2 = ":", *cmd_name = head->str;
 
 	err_msg = _strcat(prog_name, spaces_1);

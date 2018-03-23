@@ -9,7 +9,7 @@
 */
 char *f_cmd(char *command)
 {
-	char *_paths = NULL, *full_path;
+	char *_paths = NULL, *full_path = NULL;
 	int found = 0;
 	char *_path = _getenv("PATH");
 	char *_path_exp = expand_path(_path);
@@ -17,29 +17,40 @@ char *f_cmd(char *command)
 	if (!command)
 		return (NULL);
 
-	_paths = _strtok(strdup(_path_exp), ":");
+	if (_path_exp)
+	{
+		_paths = _strtok(_strdup(_path_exp), ":");
+		free(_path_exp);
+		_path_exp = _paths; /* to be freed later */
+	}
 
 	/* first parse through PATH and look for it */
 	while (_paths != NULL)
 	{
 		full_path = _strcat_slash(_paths, command);
-
 		/* if you find it, found = 1 and break */
 		if (access(full_path, F_OK) == 0)
 		{
 			found = 1;
 			break;
 		}
+		free(full_path);
 		_paths = _strtok(NULL, ":");
 	}
+	free(_path_exp);
 
 	/* if found return the full path */
 	if (found)
+	{
 		return (full_path);
+	}
+
 
 	/* if you don't find in PATH, check absolute path */
 	if (access(command, F_OK) == 0)
+	{
 		return (command);
+	}
 
 	/* otherwise return an empty string */
 	return ("");

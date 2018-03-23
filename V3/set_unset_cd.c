@@ -11,8 +11,10 @@ void set_unset(char *dir)
 	char *prev_dir, *cur_dir;
 	int size = _BUFSIZ;
 
-	prev_dir = malloc(size);
-	cur_dir = malloc(size);
+	prev_dir = _calloc(size);
+	cur_dir = _calloc(size);
+	if (!cur_dir)
+		free(prev_dir);
 
 	getcwd(prev_dir, size);
 	chdir(dir);

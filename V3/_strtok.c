@@ -10,13 +10,33 @@
 char *_strtok(char *s, char *delim)
 {
 	static char *last_s;
+	static int size;
+	static char *orig_s = NULL;
+
+	if (s)
+	{
+		size = _strlen(s);
+		orig_s = s;
+	}
 
 	if (s == NULL)
-		s = ++last_s;
+	{
+		if (++last_s - orig_s < size)
+			s = last_s;
+		else
+		{
+			/* if (orig_s) */
+				/* free(orig_s); */
+			return (NULL);
+		}
+	}
 	while (*s == *delim)
 		s++;
 	if (*s == '\0')
+	{
 		return (NULL);
+		/* free(orig_s); */
+	}
 	if (s != NULL)
 		last_s = s;
 	last_s = s;

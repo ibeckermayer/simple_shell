@@ -38,8 +38,8 @@ char *expand_path(char *path)
 			i++;
 	}
 
-	tot_len = _strlen(_getenv("PWD")) * num_exp + _strlen(path);
-	expndd = malloc(tot_len);
+	tot_len = _strlen(_getenv("PWD")) * num_exp + _strlen(path) + 1;
+	expndd = _calloc(tot_len);
 
 	i = j = 0;
 	while (i < tot_len)

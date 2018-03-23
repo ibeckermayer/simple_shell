@@ -17,7 +17,19 @@
 #define INPUT_DELIM " "
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
+/* #define ADDMEM 0 */
+/* #define FREEMEM 1 */
 #define UNUSED(x) (void)(x)
+/**
+ * struct pointers_ll - a linked list of pointers
+ * @ptr: the pointer
+ * @next: next in the list
+ */
+typedef struct pointers_ll
+{
+	void *ptr;
+	struct pointers_ll *next;
+} pll;
 /**
  * struct string_linked_list - a linked list of strings
  * @str: the string
@@ -62,4 +74,7 @@ void set_unset(char *dir);
 void tests(void);
 char *get_error(char *prog_name, int num_errors, sll *head);
 char *expand_path(char *path);
+void *_calloc(int size);
+void free_sll(sll *head);
+void free_sll_l(sll **input_list);
 #endif

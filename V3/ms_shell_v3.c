@@ -9,10 +9,12 @@ int main(int argc, char **argv)
 {
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
-	sll **input_list = malloc(_BUFSIZ);
+	sll **input_list = _calloc(_BUFSIZ);
 	char *full_prog_path;
-	char *err_msg = malloc(_BUFSIZ);
+	char *err_msg;
 	int status, i, k;
+	/* pid_t stats; */
+	/* pid_t _pid; */
 	sll *input_toks;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
@@ -42,10 +44,14 @@ int main(int argc, char **argv)
 		/* generate list of separate commands */
 		input_list = gen_in_l(input_list, input);
 
+		/* free the input, no longer needed */
+		free(input);
+
 		k = 0;
 		do
 		{
 			input_toks = input_list[k++];
+
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
 				continue;
@@ -71,16 +77,26 @@ int main(int argc, char **argv)
 				if (!(fork()))
 					execve(arguments[0], arguments, NULL);
 				else
+				{
+					free(full_prog_path);
 					wait(&status);
+				}
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
 				err_msg = get_error(argv[0] + 2, num_errors, input_toks);
 				write(2, err_msg, _strlen(err_msg));
+				free(err_msg);
 				num_errors++;
 			}
 			else
+			{
+				free(full_prog_path);
 				continue;
+			}
+
+
 		} while (input_list[k]);
+		free_sll_l(input_list);
 	}
 }
