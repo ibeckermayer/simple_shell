@@ -50,7 +50,9 @@ int main(int argc, char **argv)
 		k = 0;
 		do
 		{
-			input_toks = input_list[k++];
+			input_toks = input_list[k];
+			free(input_list[k++]);
+
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
 				continue;
