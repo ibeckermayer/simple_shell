@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 		/* Add to history unless it is an empty string or return or history*/
 		if (_strcmp(input, "\n") == 0)
 			;
-		else if (_strcmp(input, "history") == 0)
+		else if (check_for_his(input) == 1)
 			;
 		else
 			_shistory(input, 1);
