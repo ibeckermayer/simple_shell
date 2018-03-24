@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 					execve(arguments[0], arguments, NULL);
 				else
 				{
-					free(full_prog_path);
+					//free(full_prog_path);
 					wait(&status);
 				}
 			}
