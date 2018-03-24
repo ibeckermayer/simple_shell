@@ -9,7 +9,11 @@
 */
 int check_for_his(char *input, char *tocheck)
 {
-	int recal = 2, i = 0, j = 0, k = 0, size = strlen(tocheck);
+	int recal = 2, i = 0, j = 0, k = 0, size = _strlen(tocheck);
+
+	if (size == 1)
+		if (input[0] == tocheck[0])
+			return (1);
 
 	while (input[k])
 	{
@@ -20,6 +24,13 @@ int check_for_his(char *input, char *tocheck)
 			{
 				if (input[i] == tocheck[j])
 				{
+					if (size == 1)
+						if (input[--i] || input[i++])
+						{
+							recal = 0;
+							break;
+						}
+
 					recal = 1;
 					i++;
 					j++;
@@ -37,6 +48,7 @@ int check_for_his(char *input, char *tocheck)
 			k++;
 	}
 	if (recal == 2)
-		recal = 0;	
+		recal = 0;
+	
 	return (recal);
 }

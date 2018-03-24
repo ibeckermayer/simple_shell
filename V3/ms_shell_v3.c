@@ -40,6 +40,8 @@ int main(int argc, char **argv)
 			;
 		else if (check_for_his(input, "history") == 1)
 			;
+		else if (check_for_his(input, "h") == 1)
+			;
 		else
 			_shistory(input, 1);
 
