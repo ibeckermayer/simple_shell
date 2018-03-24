@@ -35,11 +35,13 @@ int main(int argc, char **argv)
 		/* get input */
 		input = get_input();
 
-		/* Add to history unless it is an empty string or return*/
-		if (_strcmp(input, "\n") != 0)
-		{
+		/* Add to history unless it is an empty string or return or history*/
+		if (_strcmp(input, "\n") == 0)
+			;
+		else if (_strcmp(input, "history") == 0)
+			;
+		else
 			_shistory(input, 1);
-		}
 
 		/* generate list of separate commands */
 		input_list = gen_in_l(input_list, input);
