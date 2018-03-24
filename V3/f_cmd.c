@@ -13,6 +13,7 @@ char *f_cmd(char *command)
 	int found = 0;
 	char *_path = _getenv("PATH");
 	char *_path_exp = expand_path(_path);
+	recall_path = 0;
 
 	if (!command)
 		return (NULL);
@@ -49,6 +50,7 @@ char *f_cmd(char *command)
 	/* if you don't find in PATH, check absolute path */
 	if (access(command, F_OK) == 0)
 	{
+		recall_path = 1;
 		return (command);
 	}
 
