@@ -10,12 +10,17 @@
 void _setenv(char *name, char *value)
 {
 	char *cur_val = _getenv(name);
+	char *temp1, *temp2;
 	int i;
 
 	if (cur_val)
 	{
 		cur_val -= _strlen(name) + 1;
-		_strcpy(cur_val, _strcat(_strcat(name, "="), value));
+		temp1 = _strcat(name, "=");
+		temp2 = _strcat(temp1, value);
+		_strcpy(cur_val, temp2);
+		free(temp1);
+		free(temp2);
 	}
 	else
 	{
@@ -23,8 +28,12 @@ void _setenv(char *name, char *value)
 		i = 0;
 		while (environ[i])
 			i++;
-		environ[i++] = _strcat(_strcat(name, "="), value);
+		temp1 = _strcat(name, "=");
+		temp2 = _strcat(temp1, value);
+		environ[i++] = _strdup(temp2);
 		environ[i] = NULL;
+		free(temp1);
+		free(temp2);
 	}
 
 }

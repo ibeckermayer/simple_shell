@@ -13,12 +13,13 @@ void set_unset(char *dir)
 
 	prev_dir = _calloc(size);
 	cur_dir = _calloc(size);
-	if (!cur_dir)
-		free(prev_dir);
 
+	/* !!! should only set env variables if chdir works properly */
 	getcwd(prev_dir, size);
 	chdir(dir);
 	getcwd(cur_dir, size);
 	_setenv("OLDPWD", prev_dir);
 	_setenv("PWD", cur_dir);
+	free(prev_dir);
+	free(cur_dir);
 }

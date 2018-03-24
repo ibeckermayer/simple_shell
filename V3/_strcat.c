@@ -11,13 +11,11 @@ char *_strcat(char *dest, char *src)
 	int size = 0, size2 = 0, j = 0, k = 0, total = 0;
 	char *final;
 
-	while (dest[size])
-		size++;
+	size = _strlen(dest);
 
-	while (src[size2])
-		size2++;
+	size2 = _strlen(src);
 
-	final = _calloc(total = size + size2 + 2);
+	final = _calloc(total = size + size2 + 1);
 
 	while (dest[j])
 	{
