@@ -78,5 +78,5 @@ char *expand_path(char *path);
 void *_calloc(int size);
 void free_sll(sll *head);
 void free_sll_l(sll **input_list);
-int check_for_his(char *input);
+int check_for_his(char *input, char *tocheck);
 #endif
