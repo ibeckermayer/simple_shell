@@ -42,6 +42,7 @@ typedef struct string_linked_list
 } sll;
 extern char **environ;
 int num_errors;
+int recall_path;
 char *_strcpy(char *dest, char *src);
 void _setenv(char *name, char *value);
 sll *gen_sll(char *str, char *delim);
