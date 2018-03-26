@@ -45,6 +45,7 @@ int num_errors;
 int recall_path;
 char *_strcpy(char *dest, char *src);
 void _setenv(char *name, char *value);
+void _unsetenv(char *name);
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);

@@ -35,7 +35,10 @@ int main(int argc, char **argv)
 		/* get input */
 		input = get_input();
 
-		/* Add to history unless it is an empty string or return or history*/
+		/*
+		  !!! not quite the behavior - adds history if history isn't the last command...
+		   Add to history unless it is an empty string or return or history
+		*/
 		if (_strcmp(input, "\n") == 0)
 			;
 		else if (check_for_his(input, "history") == 1)

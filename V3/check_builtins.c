@@ -31,6 +31,11 @@ int check_builtins(sll *head)
 		_setenv(head->next->str, head->next->next->str);
 		return (0);
 	}
+	else if (_strcmp(head->str, "unsetenv") == 0)
+	{
+		_unsetenv(head->next->str);
+		return (0);
+	}
 	else if (_strcmp(head->str, "clear") == 0)
 	{
 		_sclear();
