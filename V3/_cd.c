@@ -8,10 +8,13 @@
 
 void _cd(sll *head)
 {
-	char *user_dir = _getenv("HOME"), *prev_dir = _getenv("OLDPWD"),
-	*err_msg, *name = _getenv("_=");
+	char *user_dir = _getenv("HOME"),
+		*prev_dir = _getenv("OLDPWD"), /* "/home/vagrant/simple_shell" */
+		*err_msg,
+		*name = _getenv("_=");
 	char cur_dir[_BUFSIZ];
 	size_t size = _BUFSIZ;
+	int access_success;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
 	if (!num_errors)
@@ -43,9 +46,12 @@ void _cd(sll *head)
 		user_dir = _strcat_slash(cur_dir, head->next->str);
 		set_unset(user_dir);
 
-		if (access(user_dir, F_OK) == 0)
+		access_success = access(user_dir, F_OK);
+		printf("access_success = %d\n", access_success);
+
+		if (access_success == 0)
 		{
-			chdir(user_dir);
+			/* chdir(user_dir); */
 
 			if (chdir(user_dir) == -1)
 			{
@@ -54,13 +60,17 @@ void _cd(sll *head)
 				num_errors++;
 			}
 		}
-		else if (access(user_dir, F_OK) == -1)
+		else if (access_success == -1)
 		{
-			err_msg = get_error(name + 1, num_errors, head);
+			printf("0\n");
+			err_msg = get_error(name, num_errors, head);
+			printf("1\n");
 			write(1, err_msg, _strlen(err_msg));
+			printf("2\n");
 			free(err_msg);
+			printf("3\n");
 			num_errors++;
-
+			printf("4\n");
 		}
 		free(user_dir);
 	}
