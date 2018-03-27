@@ -13,8 +13,6 @@ int main(int argc, char **argv)
 	char *full_prog_path;
 	char *err_msg;
 	int status, i, k;
-	/* pid_t stats; */
-	/* pid_t _pid; */
 	sll *input_toks;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
@@ -22,11 +20,10 @@ int main(int argc, char **argv)
 		num_errors++;
 
 	UNUSED(argc);
-
 	extract_env();
+
 	while (1)
 	{
-
 		/* _setenv the program name */
 		_setenv("_", argv[0], 1);
 
@@ -44,14 +41,17 @@ int main(int argc, char **argv)
 		  !!! not quite the behavior - adds history if history isn't the last command...
 		   Add to history unless it is an empty string or return or history
 		*/
-		if (_strcmp(input, "\n") == 0)
-			;
-		else if (check_for_his(input, "history") == 1)
-			;
-		else if (check_for_his(input, "h") == 1)
-			;
-		else
-			_shistory(input, 1);
+		if (isatty(0))
+		{
+			if (_strcmp(input, "\n") == 0)
+				;
+			/* else if (check_for_his(input, "history") == 1) */
+			/* 	; */
+			/* else if (check_for_his(input, "h") == 1) */
+			/* 	; */
+			else
+				_shistory(input, 1);
+		}
 
 		/* generate list of separate commands */
 		input_list = gen_in_l(input_list, input);

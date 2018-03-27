@@ -32,15 +32,26 @@ void _shistory(char *input, int add)
 
 	if (add)
 	{
-		if (cur_his < HISTORY_COUNT)
+		if (cur_his > 0)
 		{
-			history[cur_his] = _strdup(input);
-			cur_his++;
+			if (_strcmp(history[cur_his - 1], input) != 0)
+			{
+				if (cur_his < HISTORY_COUNT)
+				{
+					history[cur_his] = _strdup(input);
+					cur_his++;
+				}
+				else
+				{
+					shifthis(history);
+					history[HISTORY_COUNT - 1] = _strdup(input);
+					cur_his++;
+				}
+			}
 		}
 		else
 		{
-			shifthis(history);
-			history[HISTORY_COUNT - 1] = _strdup(input);
+			history[cur_his] = _strdup(input);
 			cur_his++;
 		}
 	}
