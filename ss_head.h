@@ -14,6 +14,7 @@
 #include <assert.h>
 #define _BUFSIZ 4096
 #define HISTORY_COUNT _BUFSIZ
+#define INPUT_DELIM " "
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
@@ -69,7 +70,7 @@ char *_strcat(char *dest, char *src);
 void _cd(sll *head);
 char *cut_off(char *to_cut, int num_to_cut);
 char *_strcat_slash(char *dest, char *src);
-void set_unset(char *dir);
+int set_unset(char *dir);
 void tests(void);
 char *get_error(char *prog_name, int num_errors, sll *head);
 char *expand_path(char *path);

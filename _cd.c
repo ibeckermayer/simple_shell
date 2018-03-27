@@ -14,7 +14,7 @@ void _cd(sll *head)
 		*name = _getenv("_=");
 	char cur_dir[_BUFSIZ];
 	size_t size = _BUFSIZ;
-	int access_success;
+	int chdir_success;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
 	if (!num_errors)
@@ -40,23 +40,16 @@ void _cd(sll *head)
 	else
 	{
 		getcwd(cur_dir, size);
-		user_dir = _strcat_slash(cur_dir, head->next->str);
-		set_unset(user_dir);
 
-		access_success = access(user_dir, F_OK);
+		/* check for full path */
+		if (head->next->str[0] == '/')
+			user_dir = _strdup(head->next->str);
+		else
+			user_dir = _strcat_slash(cur_dir, head->next->str);
 
-		if (access_success == 0)
-		{
-			/* chdir(user_dir); */
+		chdir_success = set_unset(user_dir);
 
-			if (chdir(user_dir) == -1)
-			{
-				err_msg = get_error(name + 1, num_errors, head);
-				write(1, err_msg, _strlen(err_msg));
-				num_errors++;
-			}
-		}
-		else if (access_success == -1)
+		if (chdir_success == 1)
 		{
 			err_msg = get_error(name, num_errors, head);
 			write(1, err_msg, _strlen(err_msg));
