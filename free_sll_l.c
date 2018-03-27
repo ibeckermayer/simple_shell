@@ -15,6 +15,7 @@ void free_sll_l(sll **input_list)
 	{
 		free_sll(input_list[i++]);
 	}
+	free(input_list);
 }
 
 

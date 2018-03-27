@@ -8,20 +8,7 @@
 
 int check_builtins(sll *head)
 {
-	/* check for cntrl-d and interative vs non-interative modes */
-	if (head == NULL)
-	{
-		if (isatty(0))
-			write(1, "\n", 1);
-		_sexit();
-	}
-	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "q") == 0)
-	{
-		/* !!! could pass another int to history
-		 that lets it know to clear the memory */
-		_sexit();
-	}
-	else if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)
+	if (_strcmp(head->str, "history") == 0 || _strcmp(head->str, "h") == 0)
 	{
 		_shistory(head->str, 0);
 		return (0);

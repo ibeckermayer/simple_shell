@@ -30,7 +30,7 @@ void _shistory(char *input, int add)
 	static char *history[HISTORY_COUNT];
 	char *num;
 
-	if (add)
+	if (add == 1)
 	{
 		if (cur_his > 0)
 		{
@@ -55,7 +55,7 @@ void _shistory(char *input, int add)
 			cur_his++;
 		}
 	}
-	else
+	else if (add == 0)
 	{
 		if (cur_his >= HISTORY_COUNT)
 			his_tot = HISTORY_COUNT;
@@ -83,5 +83,10 @@ void _shistory(char *input, int add)
 			i++;
 			write(1, "\n", 1);
 		}
+	}
+	else if (add == 2)
+	{
+		for(i = 0; i < HISTORY_COUNT; i++)
+			free(history[i]);
 	}
 }

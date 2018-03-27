@@ -9,7 +9,7 @@ int main(int argc, char **argv)
 {
 	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
-	sll **input_list = _calloc(_BUFSIZ);
+	sll **input_list;
 	char *full_prog_path;
 	char *err_msg;
 	int status, i, k;
@@ -37,10 +37,7 @@ int main(int argc, char **argv)
 		/* get input */
 		input = get_input();
 
-		/*
-		  !!! not quite the behavior - adds history if history isn't the last command...
-		   Add to history unless it is an empty string or return or history
-		*/
+		/* check for newline or handle with _shistory */
 		if (isatty(0))
 		{
 			if (_strcmp(input, "\n") == 0)
@@ -54,6 +51,7 @@ int main(int argc, char **argv)
 		}
 
 		/* generate list of separate commands */
+		input_list = _calloc(_BUFSIZ);
 		input_list = gen_in_l(input_list, input);
 
 		/* free the input, no longer needed */
@@ -67,6 +65,7 @@ int main(int argc, char **argv)
 			/* !!! probably need to check here if the input
 			 is exit or CTRL-D in order to free memory before
 			_exit() is called */
+			check_exit(input_toks, input_list);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
