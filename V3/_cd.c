@@ -9,7 +9,7 @@
 void _cd(sll *head)
 {
 	char *user_dir = _getenv("HOME"),
-		*prev_dir = _getenv("OLDPWD"), /* "/home/vagrant/simple_shell" */
+		*prev_dir = _getenv("OLDPWD"),
 		*err_msg,
 		*name = _getenv("_=");
 	char cur_dir[_BUFSIZ];
@@ -24,6 +24,7 @@ void _cd(sll *head)
 	{
 		if (access(user_dir, F_OK) == 0)
 			set_unset(user_dir);
+
 	}
 	else if (_strcmp(head->next->str, "~") == 0)
 	{
@@ -36,10 +37,6 @@ void _cd(sll *head)
 		write(1, "\n", 1);
 		set_unset(prev_dir);
 	}
-	else if (_strcmp(head->next->str, ".") == 0)
-	{
-		set_unset(cur_dir);
-	}
 	else
 	{
 		getcwd(cur_dir, size);
@@ -47,7 +44,6 @@ void _cd(sll *head)
 		set_unset(user_dir);
 
 		access_success = access(user_dir, F_OK);
-		printf("access_success = %d\n", access_success);
 
 		if (access_success == 0)
 		{
@@ -62,15 +58,10 @@ void _cd(sll *head)
 		}
 		else if (access_success == -1)
 		{
-			printf("0\n");
 			err_msg = get_error(name, num_errors, head);
-			printf("1\n");
 			write(1, err_msg, _strlen(err_msg));
-			printf("2\n");
 			free(err_msg);
-			printf("3\n");
 			num_errors++;
-			printf("4\n");
 		}
 		free(user_dir);
 	}

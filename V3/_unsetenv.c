@@ -7,7 +7,7 @@
 *
 * Return: void
 */
-void _unsetenv(char *name)
+void _un_setenv(char *name)
 {
 	char *cur_val = _getenv(name), *temp1, *full_name;
 	int environ_len, name_loc, i;

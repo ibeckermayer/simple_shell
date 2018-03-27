@@ -19,8 +19,8 @@ void set_unset(char *dir)
 
 	chdir(dir);
 	getcwd(cur_dir, size);
-	_setenv("OLDPWD", prev_dir);
-	_setenv("PWD", cur_dir);
+	_setenv("OLDPWD", prev_dir, 1);
+	_setenv("PWD", cur_dir, 1);
 
 	free(prev_dir);
 	free(cur_dir);

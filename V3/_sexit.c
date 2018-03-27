@@ -5,5 +5,6 @@
  */
 void _sexit(void)
 {
+	free_env();
 	_exit(0);
 }

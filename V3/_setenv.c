@@ -7,20 +7,37 @@
 *
 * Return: void
 */
-void _setenv(char *name, char *value)
+void _setenv(char *name, char *value, int d)
 {
-	char *cur_val = _getenv(name);
-	char *temp1, *temp2;
-	int i;
+	char *cur_val = getenv(name);
+	char *temp1, *temp2, *to_be_freed;
+	int i, j, len;
+	len = _strlen(name);
+	UNUSED(d);
 
 	if (cur_val)
 	{
-		cur_val -= _strlen(name) + 1;
+		i = 0;
+		while (environ[i])
+		{
+			for (j = 0; j < len; j++)
+			{
+				if (name[j] == environ[i][j])
+					;
+				else
+					break;
+			}
+			if (j == len)
+				break;
+			i++;
+		}
+
+		to_be_freed = environ[i];
 		temp1 = _strcat(name, "=");
 		temp2 = _strcat(temp1, value);
-		_strcpy(cur_val, temp2);
+		environ[i] = temp2;
 		free(temp1);
-		free(temp2);
+		free(to_be_freed);
 	}
 	else
 	{

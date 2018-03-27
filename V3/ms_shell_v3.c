@@ -23,8 +23,13 @@ int main(int argc, char **argv)
 
 	UNUSED(argc);
 
+	extract_env();
 	while (1)
 	{
+
+		/* _setenv the program name */
+		_setenv("_", argv[0], 1);
+
 		/* check control-c */
 		signal(SIGINT, _control_c);
 

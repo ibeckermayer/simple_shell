@@ -44,8 +44,8 @@ extern char **environ;
 int num_errors;
 int recall_path;
 char *_strcpy(char *dest, char *src);
-void _setenv(char *name, char *value);
-void _unsetenv(char *name);
+void _setenv(char *name, char *value, int d);
+void _un_setenv(char *name);
 sll *gen_sll(char *str, char *delim);
 void add2his(char *input);
 void print_sll(sll *head);
@@ -80,4 +80,6 @@ void *_calloc(int size);
 void free_sll(sll *head);
 void free_sll_l(sll **input_list);
 int check_for_his(char *input, char *tocheck);
+void extract_env();
+void free_env();
 #endif
