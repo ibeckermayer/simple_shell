@@ -12,13 +12,10 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
-#define _BUFSIZ 1024
-#define HISTORY_COUNT 1024
-#define INPUT_DELIM " "
+#define _BUFSIZ 4096
+#define HISTORY_COUNT _BUFSIZ
 #define PROMPT ";)$ "
 #define PROMPT_LEN 4
-/* #define ADDMEM 0 */
-/* #define FREEMEM 1 */
 #define UNUSED(x) (void)(x)
 /**
  * struct pointers_ll - a linked list of pointers
