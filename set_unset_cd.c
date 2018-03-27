@@ -16,11 +16,12 @@ void set_unset(char *dir)
 
 	/* !!! should only set env variables if chdir works properly */
 	getcwd(prev_dir, size);
-
-	chdir(dir);
-	getcwd(cur_dir, size);
-	_setenv("OLDPWD", prev_dir, 1);
-	_setenv("PWD", cur_dir, 1);
+	if (chdir(dir) == 0)
+	{
+		getcwd(cur_dir, size);
+		_setenv("OLDPWD", prev_dir, 1);
+		_setenv("PWD", cur_dir, 1);
+	}
 
 	free(prev_dir);
 	free(cur_dir);
