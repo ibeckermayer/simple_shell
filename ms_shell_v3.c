@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 			else
 				full_prog_path = NULL;
 
-			if (full_prog_path && _strcmp("", full_prog_path) != 0)
+p			if (full_prog_path && _strcmp("", full_prog_path) != 0)
 			{
 				i = 0;
 				arguments[i++] = full_prog_path;
