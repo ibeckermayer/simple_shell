@@ -42,20 +42,20 @@ int main(int argc, char **argv)
 		{
 			if (_strcmp(input, "\n") == 0)
 				;
-			/* else if (check_for_his(input, "history") == 1) */
-			/* 	; */
-			/* else if (check_for_his(input, "h") == 1) */
-			/* 	; */
 			else
 				_shistory(input, 1);
 		}
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
-		input_list = gen_in_l(input_list, input);
+		input_list = gen_in_l(input_list, input, argv[0]);
 
 		/* free the input, no longer needed */
 		free(input);
+
+		/* check if input had an error */
+		if (!input_list)
+			continue;
 
 		k = 0;
 		do

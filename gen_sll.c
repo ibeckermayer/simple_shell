@@ -46,6 +46,7 @@ sll *gen_sll(char *str, char *delim)
 	free(strdup);
 
 	curr_tok = _strtok(str, delim);
+
 	for (i = 0; i < num_toks; i++)
 	{
 		if (i == 0)
@@ -55,7 +56,24 @@ sll *gen_sll(char *str, char *delim)
 				exit(-1);
 			original_head = head;
 		}
-		head->str = _strdup(curr_tok);
+		/* replace tilde */
+		if (curr_tok)
+		{
+			if (curr_tok[0] == '~')
+			{
+				if (curr_tok[1] == '\0' || curr_tok[1] == ' ' ||
+				    curr_tok[1] == '&' || curr_tok[1] == ';' || curr_tok[1] == '/')
+				{
+					curr_tok = _strcat(_getenv("HOME"), curr_tok + 1);
+					head->str = _strdup(curr_tok);
+					free(curr_tok);
+				}
+				else
+					head->str = _strdup(curr_tok);
+			}
+			else
+				head->str = _strdup(curr_tok);
+		}
 		if (i < num_toks - 1)
 		{
 			new_node = _calloc(sizeof(sll));
