@@ -42,20 +42,20 @@ int main(int argc, char **argv)
 		{
 			if (_strcmp(input, "\n") == 0)
 				;
-			/* else if (check_for_his(input, "history") == 1) */
-			/* 	; */
-			/* else if (check_for_his(input, "h") == 1) */
-			/* 	; */
 			else
 				_shistory(input, 1);
 		}
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
-		input_list = gen_in_l(input_list, input);
+		input_list = gen_in_l(input_list, input, argv[0]);
 
 		/* free the input, no longer needed */
 		free(input);
+
+		/* check if input had an error */
+		if (!input_list)
+			continue;
 
 		k = 0;
 		do
@@ -70,7 +70,13 @@ int main(int argc, char **argv)
 			/* !!! probably need to check here if the input
 			 is exit or CTRL-D in order to free memory before
 			_exit() is called */
-			check_exit(input_toks, input_list);
+			if (_strcmp(input, "exit") == 0)
+			{
+				free(err_msg);
+				check_exit(input_toks, input_list);
+			}
+			else
+				check_exit(input_toks, input_list);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
@@ -81,7 +87,7 @@ int main(int argc, char **argv)
 			else
 				full_prog_path = NULL;
 
-			if (full_prog_path && _strcmp("", full_prog_path) != 0)
+p			if (full_prog_path && _strcmp("", full_prog_path) != 0)
 			{
 				i = 0;
 				arguments[i++] = full_prog_path;
@@ -98,10 +104,12 @@ int main(int argc, char **argv)
 				{
 					execve(arguments[0], arguments, NULL);
 					perror(err_msg);
-					_exit(0);
+					free(err_msg);
+					_sexit();
 				}
 				else
 				{
+					free(err_msg);
 					if (!recall_path)
 						free(full_prog_path);
 					wait(&status);
@@ -117,6 +125,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
+				free(err_msg);
 				free(full_prog_path);
 				continue;
 			}
