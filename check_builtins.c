@@ -42,10 +42,5 @@ int check_builtins(sll *head)
 		_cd(head);
 		return (0);
 	}
-	else if (_strcmp(head->str, "checker") == 0)
-	{
-		tests();
-		return (0);
-	}
 	return (1);
 }
