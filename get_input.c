@@ -14,7 +14,8 @@ char *get_input(void)
 	size_of_input = read(0, input_buffer, _BUFSIZ);
 	if (_strcmp(input_buffer, "") == 0)
 	{
-		write(1, "\n", 1);
+		if (isatty(0))
+			write(1, "\n", 1);
 		exit(0);
 	}
 	if (input_buffer[0] != '\n' && size_of_input > 0)
