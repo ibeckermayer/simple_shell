@@ -15,8 +15,7 @@
 #define _BUFSIZ 4096
 #define HISTORY_COUNT _BUFSIZ
 #define INPUT_DELIM " "
-/* #define PROMPT ";)$ " */
-#define PROMPT "#cisfun$ "
+#define PROMPT ";)$ "
 #define PROMPT_LEN 4
 #define UNUSED(x) (void)(x)
 /**
