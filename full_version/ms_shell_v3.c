@@ -7,7 +7,7 @@
  */
 int main(int argc, char **argv)
 {
-	char *input = NULL;
+	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
 	sll **input_list;
 	char *full_prog_path;
@@ -20,15 +20,15 @@ int main(int argc, char **argv)
 		num_errors++;
 
 	UNUSED(argc);
-	/* extract_env(); */
+	extract_env();
 
 	while (1)
 	{
-		/* /\* _setenv the program name *\/ */
-		/* _setenv("_", argv[0], 1); */
+		/* _setenv the program name */
+		_setenv("_", argv[0], 1);
 
-		/* /\* check control-c *\/ */
-		/* signal(SIGINT, _control_c); */
+		/* check control-c */
+		signal(SIGINT, _control_c);
 
 		/* Check for interative vs. non-interative mode */
 		if (isatty(0))
@@ -38,14 +38,14 @@ int main(int argc, char **argv)
 		/* get input */
 		input = get_input();
 
-		/* /\* check for newline or handle with _shistory *\/ */
-		/* if (isatty(0)) */
-		/* { */
-		/* 	if (_strcmp(input, "\n") == 0) */
-		/* 		; */
-		/* 	else */
-		/* 		_shistory(input, 1); */
-		/* } */
+		/* check for newline or handle with _shistory */
+		if (isatty(0))
+		{
+			if (_strcmp(input, "\n") == 0)
+				;
+			else
+				_shistory(input, 1);
+		}
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
