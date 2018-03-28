@@ -16,6 +16,7 @@ char *get_input(void)
 	{
 		if (isatty(0))
 			write(1, "\n", 1);
+		free(input_buffer);
 		exit(0);
 	}
 	if (input_buffer[0] != '\n' && size_of_input > 0)

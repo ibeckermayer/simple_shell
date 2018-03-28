@@ -74,7 +74,7 @@ int main(int argc, char **argv)
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
 			{
-				free(err_msg);
+				/* free(err_msg); */
 				continue;
 			}
 
