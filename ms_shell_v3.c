@@ -50,7 +50,6 @@ int main(int argc, char **argv)
 		input_list = _calloc(_BUFSIZ);
 		input_list = gen_in_l(input_list, input, argv[0]);
 
-		/* free the input, no longer needed */
 		free(input);
 
 		/* check if input had an error */
@@ -66,17 +65,10 @@ int main(int argc, char **argv)
 				err_msg = get_error(argv[0], num_errors, input_toks);
 				err_msg[_strlen(err_msg) - 1] = '\0';
 			}
+			/* else */
+			/* 	err_msg = NULL; */
 
-			/* !!! probably need to check here if the input
-			 is exit or CTRL-D in order to free memory before
-			_exit() is called */
-			if (_strcmp(input, "exit") == 0)
-			{
-				free(err_msg);
-				check_exit(input_toks, input_list);
-			}
-			else
-				check_exit(input_toks, input_list);
+			check_exit(input_toks, input_list, err_msg);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
@@ -87,7 +79,7 @@ int main(int argc, char **argv)
 			else
 				full_prog_path = NULL;
 
-p			if (full_prog_path && _strcmp("", full_prog_path) != 0)
+			if (full_prog_path && _strcmp("", full_prog_path) != 0)
 			{
 				i = 0;
 				arguments[i++] = full_prog_path;
@@ -129,8 +121,6 @@ p			if (full_prog_path && _strcmp("", full_prog_path) != 0)
 				free(full_prog_path);
 				continue;
 			}
-
-
 		} while (input_list[k]);
 		free_sll_l(input_list);
 	}

@@ -80,5 +80,5 @@ void free_sll_l(sll **input_list);
 int check_for_his(char *input, char *tocheck);
 void extract_env();
 void free_env();
-void check_exit(sll *head, sll **input_list);
+void check_exit(sll *head, sll **input_list, char *err_msg);
 #endif
