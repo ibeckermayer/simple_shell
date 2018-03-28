@@ -9,7 +9,7 @@
 */
 void _setenv(char *name, char *value, int d)
 {
-	char *cur_val = getenv(name);
+	char *cur_val = _getenv(name);
 	char *temp1, *temp2, *to_be_freed;
 	int i, j, len;
 	len = _strlen(name);

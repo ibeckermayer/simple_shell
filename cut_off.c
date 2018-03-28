@@ -14,7 +14,7 @@ char *cut_off(char *to_cut, int num_to_cut)
 
 	result = _calloc((i - num_to_cut) + 1);
 	if (!result)
-		exit(-1);
+		_exit(-1);
 
 	while (j < i)
 		result[k++] = to_cut[j++];

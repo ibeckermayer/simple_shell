@@ -1,19 +1,19 @@
 #include "ss_head.h"
 
-/**
- * print_sll - prints a string linked list
- * @head: the head of the list
- *
- * Return: void
- */
-void print_sll(sll *head)
-{
-	while (head)
-	{
-		printf("%s\n", head->str);
-		head = head->next;
-	}
-}
+/* /\** */
+/*  * print_sll - prints a string linked list */
+/*  * @head: the head of the list */
+/*  * */
+/*  * Return: void */
+/*  *\/ */
+/* void print_sll(sll *head) */
+/* { */
+/* 	while (head) */
+/* 	{ */
+/* 		printf("%s\n", head->str); */
+/* 		head = head->next; */
+/* 	} */
+/* } */
 
 /* !!! check for if PATH is unset */
 
@@ -27,15 +27,15 @@ void print_sll(sll *head)
 sll *gen_sll(char *str, char *delim)
 {
 	char *curr_tok;
-	char *strdup;
+	char *dup;
 
 	int i, num_toks = 0;
 	sll *head = NULL, *original_head = NULL, *new_node;
 
 	if (str)
 	{
-		strdup = _strdup(str);
-		curr_tok = _strtok(strdup, delim);
+		dup = _strdup(str);
+		curr_tok = _strtok(dup, delim);
 	}
 
 	while (curr_tok != NULL)
@@ -43,7 +43,7 @@ sll *gen_sll(char *str, char *delim)
 		num_toks++;
 		curr_tok = _strtok(NULL, delim);
 	}
-	free(strdup);
+	free(dup);
 
 	curr_tok = _strtok(str, delim);
 
@@ -53,7 +53,7 @@ sll *gen_sll(char *str, char *delim)
 		{
 			head = _calloc(sizeof(sll));
 			if (!head)
-				exit(-1);
+				_exit(-1);
 			original_head = head;
 		}
 		/* replace tilde */
@@ -78,7 +78,7 @@ sll *gen_sll(char *str, char *delim)
 		{
 			new_node = _calloc(sizeof(sll));
 			if (!new_node)
-				exit(-1);
+				_exit(-1);
 		}
 		else
 			new_node = NULL;
