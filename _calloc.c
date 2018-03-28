@@ -14,7 +14,7 @@ void *_calloc(int size)
 
 	buf = malloc(size);
 	if (!buf)
-		return (NULL);
+		exit(1);
 	for (i = 0; i < size; i++)
 		buf[i] = '\0';
 	/* handle_mem(buf, ADD_MEM); */
