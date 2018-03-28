@@ -9,12 +9,13 @@ int main(int argc, char **argv)
 {
 	char *input = NULL;
 	char *arguments[_BUFSIZ];
-	sll **input_list;
 	char *full_prog_path;
 	char *err_msg;
 	int status, i, k;
-	sll *input_toks;
+	int num_errors = 0;
 
+	sll **input_list;
+	sll *input_toks;
 	/* checks to see if global error is 0 to  start counting at 1 */
 	if (!num_errors)
 		num_errors++;
@@ -41,43 +42,41 @@ int main(int argc, char **argv)
 		/* /\* check for newline or handle with _shistory *\/ */
 		/* if (isatty(0)) */
 		/* { */
-		/* 	if (_strcmp(input, "\n") == 0) */
-		/* 		; */
-		/* 	else */
-		/* 		_shistory(input, 1); */
+		/*	if (_strcmp(input, "\n") == 0) */
+		/*		; */
+		/*	else */
+		/*		_shistory(input, 1); */
 		/* } */
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
-		input_list = gen_in_l(input_list, input, argv[0]);
+		input_list = gen_in_l(input_list, input);
 
 		free(input);
 
-		/* check if input had an error */
-		if (!input_list)
-			continue;
-
+		/* /\* check if input had an error *\/ */
+		/* if (!input_list) */
+		/*	continue; */
 		k = 0;
-		do
-		{
+		do {
 			input_toks = input_list[k++];
-			if (!(!input_toks))
-			{
-				err_msg = get_error(argv[0], num_errors, input_toks);
-				if (err_msg)
-					err_msg[_strlen(err_msg) - 1] = '\0';
-			}
-			else
-				err_msg = NULL;
+			/* if (input_toks) */
+			/* { */
+			/*	err_msg = get_error(argv[0], num_errors, input_toks); */
+			/*	if (err_msg) */
+			/*		err_msg[_strlen(err_msg) - 1] = '\0'; */
+			/* } */
+			/* else */
+			/*	err_msg = NULL; */
 
-			check_exit(input_toks, input_list, err_msg);
+			/* check_exit(input_toks, input_list, err_msg); */
 
 			/* check for built-ins */
-			if (check_builtins(input_toks) == 0)
-			{
-				free(err_msg);
-				continue;
-			}
+			/* if (check_builtins(input_toks) == 0) */
+			/* { */
+			/*	free(err_msg); */
+			/*	continue; */
+			/* } */
 
 			if (input_toks)
 				full_prog_path = f_cmd(input_toks->str);
@@ -99,24 +98,25 @@ int main(int argc, char **argv)
 
 				if (!(fork()))
 				{
-					perror(err_msg);
 					execve(arguments[0], arguments, NULL);
-					perror(err_msg);
-					free(err_msg);
-					_sexit();
+					/* perror(err_msg); */
+					/* free(err_msg); */
+					/* _sexit(); */
 				}
 				else
 				{
-					free(err_msg);
-					if (!recall_path)
-						free(full_prog_path);
+					/* free(err_msg); */
+					/* if (!recall_path) */
+					/*	free(full_prog_path); */
+					/* free(full_prog_path); */
 					wait(&status);
 				}
-				num_errors++;
+
+				/* num_errors++; */
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
-				free(err_msg);
+				/* free(err_msg); */
 				err_msg = get_error(argv[0], num_errors, input_toks);
 				write(2, err_msg, _strlen(err_msg));
 				free(err_msg);
@@ -124,7 +124,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
-				free(err_msg);
+				/* free(err_msg); */
 				free(full_prog_path);
 				continue;
 			}
