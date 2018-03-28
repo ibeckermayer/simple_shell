@@ -11,9 +11,12 @@ char *get_input(void)
 	int size_of_input = 0;
 
 	input_buffer = _calloc(_BUFSIZ);
-	if (input_buffer == NULL)
-		_exit(0);
 	size_of_input = read(0, input_buffer, _BUFSIZ);
+	if (_strcmp(input_buffer, "") == 0)
+	{
+		write(1, "\n", 1);
+		exit(0);
+	}
 	if (input_buffer[0] != '\n' && size_of_input > 0)
 		input_buffer[size_of_input - 1] = '\0';
 	return (input_buffer);

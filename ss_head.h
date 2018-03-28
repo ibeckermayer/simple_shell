@@ -56,6 +56,7 @@ char *get_error(char *prog_name, int num_errors, sll *head);
 void *_calloc(int size);
 void free_sll(sll *head);
 void free_sll_l(sll **input_list);
+int check_builtins(sll *head);
 /* int check_for_his(char *input, char *tocheck); */
 /* void extract_env(); */
 /* void free_env(); */
@@ -68,7 +69,6 @@ void free_sll_l(sll **input_list);
 /* int set_unset(char *dir); */
 /* void _cd(sll *head); */
 /* int _getppid(void); */
-/* int check_builtins(sll *head); */
 /* void _control_c(int sig); */
 /* extern char **environ; */
 /* int num_errors; */

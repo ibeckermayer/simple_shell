@@ -72,11 +72,11 @@ int main(int argc, char **argv)
 			/* check_exit(input_toks, input_list, err_msg); */
 
 			/* check for built-ins */
-			/* if (check_builtins(input_toks) == 0) */
-			/* { */
-			/*	free(err_msg); */
-			/*	continue; */
-			/* } */
+			if (check_builtins(input_toks) == 0)
+			{
+				free(err_msg);
+				continue;
+			}
 
 			if (input_toks)
 				full_prog_path = f_cmd(input_toks->str);
