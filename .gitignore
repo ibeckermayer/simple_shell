@@ -6,5 +6,7 @@
 _putchar.c
 *main.c
 !README.md
+!AUTHORS
+!man_1_simple_shell
 !.gitignore
 .#*

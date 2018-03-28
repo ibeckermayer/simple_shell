@@ -30,10 +30,19 @@ char *get_error(char *prog_name, int num_errors, sll *head)
 		free(temp1);
 		temp1 = _strcat(temp2, " can't cd to ");
 		free(temp2);
-		temp2 = _strcat(temp1, head->next->str);
-		free(temp1);
-		err_msg = _strcat(temp2, "\n");
-		free(temp2);
+		if (head->next)
+		{
+			temp2 = _strcat(temp1, head->next->str);
+			free(temp1);
+			err_msg = _strcat(temp2, "\n");
+			free(temp2);
+		}
+		else
+		{
+			free(temp1);
+			err_msg = NULL;
+		}
+
 	}
 	else
 	{

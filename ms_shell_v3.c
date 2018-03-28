@@ -63,16 +63,20 @@ int main(int argc, char **argv)
 			if (!(!input_toks))
 			{
 				err_msg = get_error(argv[0], num_errors, input_toks);
-				err_msg[_strlen(err_msg) - 1] = '\0';
+				if (err_msg)
+					err_msg[_strlen(err_msg) - 1] = '\0';
 			}
-			/* else */
-			/* 	err_msg = NULL; */
+			else
+				err_msg = NULL;
 
 			check_exit(input_toks, input_list, err_msg);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
+			{
+				free(err_msg);
 				continue;
+			}
 
 			if (input_toks)
 				full_prog_path = f_cmd(input_toks->str);
@@ -110,6 +114,7 @@ int main(int argc, char **argv)
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
+				free(err_msg);
 				err_msg = get_error(argv[0], num_errors, input_toks);
 				write(2, err_msg, _strlen(err_msg));
 				free(err_msg);
