@@ -17,7 +17,7 @@
 #define INPUT_DELIM " "
 /* #define PROMPT ";)$ " */
 #define PROMPT "#cisfun$ "
-#define PROMPT_LEN 4
+#define PROMPT_LEN 9
 #define UNUSED(x) (void)(x)
 /**
  * struct pointers_ll - a linked list of pointers
@@ -56,7 +56,6 @@ char *get_input(void);
 int _getppid(void);
 void show_prompt(void);
 char *f_cmd(char *command);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int _strcmp(const char *s1, const char *s2);
 void print_env(void);
 void _sexit(void);

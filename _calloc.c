@@ -17,6 +17,5 @@ void *_calloc(int size)
 		exit(1);
 	for (i = 0; i < size; i++)
 		buf[i] = '\0';
-	/* handle_mem(buf, ADD_MEM); */
 	return (buf);
 }
