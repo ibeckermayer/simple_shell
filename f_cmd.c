@@ -18,10 +18,10 @@ char *f_cmd(char *command)
 		/* recall_path = 1; */
 		return (command);
 	}
-	else
-	{
-		perror(NULL);
-	}
+	/* else */
+	/* { */
+	/* 	perror(NULL); */
+	/* } */
 
 	/* otherwise return an empty string */
 	return ("");
