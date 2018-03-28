@@ -70,7 +70,13 @@ int main(int argc, char **argv)
 			/* !!! probably need to check here if the input
 			 is exit or CTRL-D in order to free memory before
 			_exit() is called */
-			check_exit(input_toks, input_list);
+			if (_strcmp(input, "exit") == 0)
+			{
+				free(err_msg);
+				check_exit(input_toks, input_list);
+			}
+			else
+				check_exit(input_toks, input_list);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
@@ -98,10 +104,12 @@ int main(int argc, char **argv)
 				{
 					execve(arguments[0], arguments, NULL);
 					perror(err_msg);
-					_exit(0);
+					free(err_msg);
+					_sexit();
 				}
 				else
 				{
+					free(err_msg);
 					if (!recall_path)
 						free(full_prog_path);
 					wait(&status);
@@ -117,6 +125,7 @@ int main(int argc, char **argv)
 			}
 			else
 			{
+				free(err_msg);
 				free(full_prog_path);
 				continue;
 			}
