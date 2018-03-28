@@ -142,7 +142,7 @@ sll **gen_in_l(sll **input_list, char *s, char *prog_name)
 			free(temp_str);
 			cur_str = s + i;
 		}
-		/* !!! edgecase where && is at the very end */
+
 		else if (s[i] == '&')
 		{
 			if (i < inp_len - 1)

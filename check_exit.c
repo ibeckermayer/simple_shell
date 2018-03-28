@@ -19,8 +19,6 @@ void check_exit(sll *head, sll **input_list)
 	}
 	else if (_strcmp(head->str, "exit") == 0 || _strcmp(head->str, "q") == 0)
 	{
-		/* !!! could pass another int to history
-		 that lets it know to clear the memory */
 		free_sll_l(input_list);
 		_shistory(NULL, 2);
 		_sexit();
