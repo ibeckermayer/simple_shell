@@ -13,7 +13,7 @@ char *expand_path(char *path)
 	int i, j, tot_len, num_exp = 0;
 	char *expndd;
 
-	if (path == NULL)
+	if (!path)
 		return (NULL);
 
 	i = 0;

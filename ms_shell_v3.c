@@ -61,6 +61,11 @@ int main(int argc, char **argv)
 		do
 		{
 			input_toks = input_list[k++];
+			if (!(!input_toks))
+			{
+				err_msg = get_error(argv[0], num_errors, input_toks);
+				err_msg[_strlen(err_msg) - 1] = '\0';
+			}
 
 			/* !!! probably need to check here if the input
 			 is exit or CTRL-D in order to free memory before
@@ -90,13 +95,18 @@ int main(int argc, char **argv)
 				arguments[i] = NULL;
 
 				if (!(fork()))
+				{
 					execve(arguments[0], arguments, NULL);
+					perror(err_msg);
+					_exit(0);
+				}
 				else
 				{
 					if (!recall_path)
 						free(full_prog_path);
 					wait(&status);
 				}
+				num_errors++;
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
