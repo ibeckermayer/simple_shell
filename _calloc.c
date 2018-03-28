@@ -14,7 +14,11 @@ void *_calloc(int size)
 
 	buf = malloc(size);
 	if (!buf)
+	{
+		perror(NULL);
 		exit(1);
+	}
+
 	for (i = 0; i < size; i++)
 		buf[i] = '\0';
 	return (buf);

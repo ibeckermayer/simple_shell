@@ -99,6 +99,7 @@ int main(int argc, char **argv)
 
 				if (!(fork()))
 				{
+					perror(err_msg);
 					execve(arguments[0], arguments, NULL);
 					perror(err_msg);
 					free(err_msg);
