@@ -52,10 +52,13 @@ int main(int argc, char **argv)
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
-		input_list = gen_in_l(input_list, input);
-
+		input_list = gen_in_l(input_list, input, argv[0]);
 		/* free the input, no longer needed */
 		free(input);
+
+		/* check if input had an error */
+		if (!input_list)
+			continue;
 
 		k = 0;
 		do
