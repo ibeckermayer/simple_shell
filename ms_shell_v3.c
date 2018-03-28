@@ -32,9 +32,10 @@ int main(int argc, char **argv)
 		/* signal(SIGINT, _control_c); */
 
 		/* Check for interative vs. non-interative mode */
-		if (isatty(0))
-			show_prompt();
+		/* if (isatty(0)) */
+		/* 	show_prompt(); */
 
+		show_prompt();
 		/* show_prompt(); */
 		/* get input */
 		input = get_input();
