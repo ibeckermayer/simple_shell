@@ -1,5 +1,18 @@
 #include "ss_head.h"
 
+int is_path(char *command)
+{
+	int i = 0;
+
+	while (command[i])
+	{
+		if (command[i] == '/')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 /**
 * f_cmd - find shell commands PATH
 * @command: commands name
@@ -12,11 +25,14 @@ char *f_cmd(char *command)
 	if (!command)
 		return (NULL);
 
-	/* if you don't find in PATH, check absolute path */
-	if (access(command, X_OK) == 0)
+	if (is_path(command))
 	{
-		/* recall_path = 1; */
-		return (command);
+		/* if you don't find in PATH, check absolute path */
+		if (access(command, X_OK) == 0)
+		{
+			/* recall_path = 1; */
+			return (command);
+		}
 	}
 	/* else */
 	/* { */
