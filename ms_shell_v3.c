@@ -136,11 +136,9 @@ int main(int argc, char **argv)
 					err_msg[_strlen(err_msg) - 12] = '\0';
 					perror(err_msg);
 				}
-				else
+				else if (*err_code(NULL) == 127)
 				{
 					write(2, err_msg, _strlen(err_msg));
-					_errno = 127;
-					err_code(&_errno);
 				}
 				free(err_msg);
 				num_errors++;

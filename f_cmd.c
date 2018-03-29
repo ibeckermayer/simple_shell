@@ -30,22 +30,31 @@ char *f_cmd(char *command)
 	if (is_path(command))
 	{
 		/* if you don't find in PATH, check absolute path */
-		if (access(command, X_OK) == 0)
+		if (access(command, F_OK) == 0)
 		{
-			_errno = 0;
-			err_code(&_errno);
-			return (command);
+			if (access(command, X_OK) == 0)
+			{
+				_errno = 0;
+				err_code(&_errno);
+				return (command);
+			}
+			else
+			{
+				_errno = 126;
+				err_code(&_errno);
+			}
 		}
 		else
 		{
-			_errno = 126;
+			_errno = 127;
 			err_code(&_errno);
 		}
 	}
-	/* else */
-	/* { */
-	/* 	perror(NULL); */
-	/* } */
+	else
+	{
+		_errno = 127;
+		err_code(&_errno);
+	}
 
 	/* otherwise return an empty string */
 	return ("");
