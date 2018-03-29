@@ -38,6 +38,8 @@ typedef struct string_linked_list
 	char *str;
 	struct string_linked_list *next;
 } sll;
+void __exit(void);
+int *err_code(int *code);
 char *_strcpy(char *dest, char *src);
 sll *gen_sll(char *str, char *delim);
 int _strlen(const char *s);

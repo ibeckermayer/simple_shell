@@ -1,4 +1,5 @@
 #include "ss_head.h"
+
 /**
  * main - medium version of shell w/continue prompt & added cmd functionality
  * @argc: argument count
@@ -13,9 +14,11 @@ int main(int argc, char **argv)
 	char *err_msg;
 	int status, i, k;
 	int num_errors = 0;
+	int _errno = 0;
 
 	sll **input_list;
 	sll *input_toks;
+
 	/* checks to see if global error is 0 to  start counting at 1 */
 	if (!num_errors)
 		num_errors++;
@@ -110,6 +113,16 @@ int main(int argc, char **argv)
 					/*	free(full_prog_path); */
 					/* free(full_prog_path); */
 					wait(&status);
+					if (WIFEXITED(status))
+					{
+						_errno = WEXITSTATUS(status);
+						err_code(&_errno);
+					}
+					else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+					{
+						_errno = 130;
+						err_code(&_errno);
+					}
 				}
 
 				/* num_errors++; */
@@ -118,7 +131,17 @@ int main(int argc, char **argv)
 			{
 				/* free(err_msg); */
 				err_msg = get_error(argv[0], num_errors, input_toks);
-				write(2, err_msg, _strlen(err_msg));
+				if (*err_code(NULL) == 126)
+				{
+					err_msg[_strlen(err_msg) - 12] = '\0';
+					perror(err_msg);
+				}
+				else
+				{
+					write(2, err_msg, _strlen(err_msg));
+					_errno = 127;
+					err_code(&_errno);
+				}
 				free(err_msg);
 				num_errors++;
 			}
@@ -130,5 +153,7 @@ int main(int argc, char **argv)
 			}
 		} while (input_list[k]);
 		free_sll_l(input_list);
+		if (!isatty(0))
+			__exit();
 	}
 }

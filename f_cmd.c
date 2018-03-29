@@ -22,6 +22,8 @@ int is_path(char *command)
 */
 char *f_cmd(char *command)
 {
+	int _errno = 0;
+
 	if (!command)
 		return (NULL);
 
@@ -30,8 +32,14 @@ char *f_cmd(char *command)
 		/* if you don't find in PATH, check absolute path */
 		if (access(command, X_OK) == 0)
 		{
-			/* recall_path = 1; */
+			_errno = 0;
+			err_code(&_errno);
 			return (command);
+		}
+		else
+		{
+			_errno = 126;
+			err_code(&_errno);
 		}
 	}
 	/* else */
