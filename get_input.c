@@ -8,10 +8,11 @@
 char *get_input(void)
 {
 	char *input_buffer;
+	size_t bufsiz = _BUFSIZ;
 	int size_of_input = 0;
 
 	input_buffer = _calloc(_BUFSIZ);
-	size_of_input = read(0, input_buffer, _BUFSIZ);
+	size_of_input = getline(&input_buffer, &bufsiz, stdin);
 	if (_strcmp(input_buffer, "") == 0)
 	{
 		if (isatty(0))

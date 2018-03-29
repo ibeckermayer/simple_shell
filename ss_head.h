@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
-#define _BUFSIZ 4096
+#define _BUFSIZ 4
 #define HISTORY_COUNT _BUFSIZ
 #define INPUT_DELIM " "
 #define PROMPT ";)$ "
