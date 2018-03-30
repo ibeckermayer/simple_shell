@@ -8,18 +8,12 @@
 char *get_input(void)
 {
 	char *input_buffer;
-	size_t bufsiz = _BUFSIZ;
 	int size_of_input = 0;
 
 	input_buffer = _calloc(_BUFSIZ);
-	size_of_input = getline(&input_buffer, &bufsiz, stdin);
-	if (_strcmp(input_buffer, "") == 0)
-	{
-		if (isatty(0))
-			write(1, "\n", 1);
-		free(input_buffer);
-		__exit();
-	}
+	if (input_buffer == NULL)
+		_exit(0);
+	size_of_input = read(0, input_buffer, _BUFSIZ);
 	if (input_buffer[0] != '\n' && size_of_input > 0)
 		input_buffer[size_of_input - 1] = '\0';
 	return (input_buffer);

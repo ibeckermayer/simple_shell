@@ -1,10 +1,11 @@
 #include "ss_head.h"
 
 /**
- * free_sll - free's a string linked list
- * @head: head of the list
+ * gen_ldkslfjds - generate an array of linked list pointers
+ * @str: the string to be searched through
+ * @delim: the delimeter
  *
- * Return: void
+ * Return: the head of the sll
  */
 void free_sll(sll *head)
 {

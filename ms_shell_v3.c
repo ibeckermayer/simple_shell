@@ -1,5 +1,4 @@
 #include "ss_head.h"
-
 /**
  * main - medium version of shell w/continue prompt & added cmd functionality
  * @argc: argument count
@@ -8,15 +7,12 @@
  */
 int main(int argc, char **argv)
 {
-	char *input = NULL;
+	char *input = NULL; /* *to_run = NULL; */
 	char *arguments[_BUFSIZ];
+	sll **input_list;
 	char *full_prog_path;
 	char *err_msg;
 	int status, i, k;
-	int num_errors = 0;
-	int _errno = 0;
-
-	sll **input_list;
 	sll *input_toks;
 
 	/* checks to see if global error is 0 to  start counting at 1 */
@@ -24,15 +20,15 @@ int main(int argc, char **argv)
 		num_errors++;
 
 	UNUSED(argc);
-	/* extract_env(); */
+	extract_env();
 
 	while (1)
 	{
-		/* /\* _setenv the program name *\/ */
-		/* _setenv("_", argv[0], 1); */
+		/* _setenv the program name */
+		_setenv("_", argv[0], 1);
 
-		/* /\* check control-c *\/ */
-		/* signal(SIGINT, _control_c); */
+		/* check control-c */
+		signal(SIGINT, _control_c);
 
 		/* Check for interative vs. non-interative mode */
 		if (isatty(0))
@@ -42,42 +38,44 @@ int main(int argc, char **argv)
 		/* get input */
 		input = get_input();
 
-		/* /\* check for newline or handle with _shistory *\/ */
-		/* if (isatty(0)) */
-		/* { */
-		/*	if (_strcmp(input, "\n") == 0) */
-		/*		; */
-		/*	else */
-		/*		_shistory(input, 1); */
-		/* } */
+		/* check for newline or handle with _shistory */
+		if (isatty(0))
+		{
+			if (_strcmp(input, "\n") == 0)
+				;
+			else
+				_shistory(input, 1);
+		}
 
 		/* generate list of separate commands */
 		input_list = _calloc(_BUFSIZ);
-		input_list = gen_in_l(input_list, input);
+		input_list = gen_in_l(input_list, input, argv[0]);
 
 		free(input);
 
-		/* /\* check if input had an error *\/ */
-		/* if (!input_list) */
-		/*	continue; */
-		k = 0;
-		do {
-			input_toks = input_list[k++];
-			/* if (input_toks) */
-			/* { */
-			/*	err_msg = get_error(argv[0], num_errors, input_toks); */
-			/*	if (err_msg) */
-			/*		err_msg[_strlen(err_msg) - 1] = '\0'; */
-			/* } */
-			/* else */
-			/*	err_msg = NULL; */
+		/* check if input had an error */
+		if (!input_list)
+			continue;
 
-			/* check_exit(input_toks, input_list, err_msg); */
+		k = 0;
+		do
+		{
+			input_toks = input_list[k++];
+			if (!(!input_toks))
+			{
+				err_msg = get_error(argv[0], num_errors, input_toks);
+				if (err_msg)
+					err_msg[_strlen(err_msg) - 1] = '\0';
+			}
+			else
+				err_msg = NULL;
+
+			check_exit(input_toks, input_list, err_msg);
 
 			/* check for built-ins */
 			if (check_builtins(input_toks) == 0)
 			{
-				/* free(err_msg); */
+				free(err_msg);
 				continue;
 			}
 
@@ -101,57 +99,36 @@ int main(int argc, char **argv)
 
 				if (!(fork()))
 				{
-					execve(arguments[0], arguments, NULL);
-					/* perror(err_msg); */
-					/* free(err_msg); */
-					/* _sexit(); */
+					execve(arguments[0], arguments, environ);
+					/* execve("/bin/ls", arguments, NULL); */
+					perror(err_msg);
+					free(err_msg);
+					_sexit();
 				}
 				else
 				{
-					/* free(err_msg); */
-					/* if (!recall_path) */
-					/*	free(full_prog_path); */
-					/* free(full_prog_path); */
+					free(err_msg);
+					if (!recall_path)
+						free(full_prog_path);
 					wait(&status);
-					if (WIFEXITED(status))
-					{
-						_errno = WEXITSTATUS(status);
-						err_code(&_errno);
-					}
-					else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
-					{
-						_errno = 130;
-						err_code(&_errno);
-					}
 				}
-
-				/* num_errors++; */
+				num_errors++;
 			}
 			else if (full_prog_path && _strcmp("", full_prog_path) == 0)
 			{
-				/* free(err_msg); */
+				free(err_msg);
 				err_msg = get_error(argv[0], num_errors, input_toks);
-				if (*err_code(NULL) == 126)
-				{
-					err_msg[_strlen(err_msg) - 12] = '\0';
-					perror(err_msg);
-				}
-				else if (*err_code(NULL) == 127)
-				{
-					write(2, err_msg, _strlen(err_msg));
-				}
+				write(2, err_msg, _strlen(err_msg));
 				free(err_msg);
 				num_errors++;
 			}
 			else
 			{
-				/* free(err_msg); */
+				free(err_msg);
 				free(full_prog_path);
 				continue;
 			}
 		} while (input_list[k]);
 		free_sll_l(input_list);
-		if (!isatty(0))
-			__exit();
 	}
 }

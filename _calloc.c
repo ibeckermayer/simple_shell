@@ -1,9 +1,11 @@
 #include "ss_head.h"
 /**
- * _calloc - mallocs space and initializes to 0
- * @size: size to be malloced in bytes
+ * _itoa - converts int to character
+ * code based on: http://www.strudel.org.uk/itoa/
+ * @val: value to be converted
+ * @base: base converted into
  *
- * Return: pointer to allocated space
+ * Return: the int
  */
 void *_calloc(int size)
 {
@@ -14,7 +16,7 @@ void *_calloc(int size)
 	if (!buf)
 	{
 		perror(NULL);
-		exit(-1);
+		exit(1);
 	}
 
 	for (i = 0; i < size; i++)

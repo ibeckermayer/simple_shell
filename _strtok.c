@@ -11,7 +11,7 @@ char *_strtok(char *s, char *delim)
 {
 	static char *last_s;
 	static int size;
-	static char *orig_s;
+	static char *orig_s = NULL;
 
 	if (s)
 	{
